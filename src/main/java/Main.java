@@ -1,5 +1,4 @@
 import com.ds.linear.LinkedList;
-import com.ds.linear.Node;
 
 import java.util.List;
 
@@ -65,7 +64,7 @@ public class Main {
         System.out.println("Printing all nodes through printnode function after mergesorted function" );
         mergesort.printNodes();
 
-        List<Node<Integer>> frontBackSplit = n.frontBackSplit();
+        List<LinkedList.Node<Integer>> frontBackSplit = n.frontBackSplit();
 
         System.out.println("Printing all nodes through printnode function of Front Split after frontBackSplit function" );
         printNode(frontBackSplit.get(0));
@@ -75,9 +74,9 @@ public class Main {
     }
 
 
-    static void printNode(Node head)
+    static void printNode(LinkedList.Node head)
     {
-        Node curr = null;
+        LinkedList.Node curr = null;
         curr = head;
         int i = 1;
         while (curr!= null)
