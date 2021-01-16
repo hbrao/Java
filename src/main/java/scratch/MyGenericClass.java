@@ -4,11 +4,11 @@ import java.util.*;
 
 public class MyGenericClass<T extends Comparable, S> {
     private List<T> data;
-    private S props;
+    private S metaObj;
 
     public MyGenericClass(S metaObj){
         this.data = new ArrayList<>();
-        this.props = metaObj;
+        this.metaObj = metaObj;
     }
 
     public static void main(String[] args) {
