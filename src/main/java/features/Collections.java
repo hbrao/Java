@@ -1,10 +1,10 @@
-package scratch;
+package features;
 
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class PrimitiveToCollections {
+public class Collections {
     public static void main(String[] args) {
         int[] data = {1,2,3,4,5};
 
