@@ -6,7 +6,7 @@ public class MyGenericClass<T extends Comparable, S> {
     private List<T> data;
     private S metaObj;
 
-    public MyGenericClass(S metaObj){
+    public MyGenericClass(S metaObj) {
         this.data = new ArrayList<>();
         this.metaObj = metaObj;
     }
