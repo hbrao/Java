@@ -1,6 +1,4 @@
-package com.ds.linear;
-
-import com.ds.heap.MinHeap;
+package com.ds.heap;
 
 /**
  * Created by jananiravi on 12/22/15.
