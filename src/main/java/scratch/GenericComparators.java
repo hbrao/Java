@@ -2,21 +2,26 @@ package scratch;
 
 import java.util.*;
 
-public class MyGenericClass<T extends Comparable, S> {
+public class GenericComparators<T extends Comparable, S> {
     private List<T> data;
     private S metaObj;
 
-    public MyGenericClass(S metaObj) {
+    public GenericComparators(S metaObj) {
         this.data = new ArrayList<>();
         this.metaObj = metaObj;
     }
 
     public static void main(String[] args) {
-        MyGenericClass<MyTuple<Integer,String>,String> obj = new MyGenericClass<>("BinaryHeap");
+        GenericComparators<MyTuple<Integer,String>,String> obj = new GenericComparators<>("BinaryHeap");
         obj.data.add(new MyTuple<>(1, "One"));
         obj.data.add(new MyTuple<>(2, "Two"));
         obj.data.add(new MyTuple<>(3, "Three"));
         obj.data.add(new MyTuple<>(4, "Four"));
+
+        System.out.println("Default sort ....");
+        obj.data.sort(Comparator.naturalOrder());
+        obj.data.forEach((e) -> System.out.println(e));
+
         obj.data.add(null);
 
         System.out.println("Nulls first default sort ....");
