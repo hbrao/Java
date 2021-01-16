@@ -1,19 +1,8 @@
 package coderpad.io;
-/*
- * Click `Run` to execute the snippet below!
- */
 
-import java.io.*;
 import java.util.*;
 import org.junit.*;
 import org.junit.runner.*;
-
-/*
- * To execute Java, please define "static void main" on a class
- * named Solution.
- *
- * If you need more classes, simply define them inline.
- */
 
 public class Solution {
     public static void main(String[] args) {
@@ -34,8 +23,15 @@ public class Solution {
         }
     }
 
+    public List<Integer> librarySort(int[] data) {
+        List<Integer> l1 = new ArrayList<Integer>();
+        Collections.addAll(Arrays.asList(data));
+        l1.sort(Comparator.naturalOrder());
+        return l1;
+    }
+
     @Test
-    public void testSortedArray() {
+    public void testInsertionSort() {
         int[] data = new int[]{1, 10, 2, 10, 11, 8, -1};
         new Solution().insertionSort(data);
         for (int i = 1 ; i < data.length ; i ++ ){
@@ -43,4 +39,13 @@ public class Solution {
         }
     }
 
+    @Test
+    public void testLibrarySort() {
+        int[] data = new int[]{1, 10, 2, 10, 11, 8, -1};
+        List<Integer> l1 = new Solution().librarySort(data);
+        ListIterator<Integer> itr = l1.listIterator();
+        while ( itr.hasNext() ) {
+            Assert.assertTrue(itr.next() >= itr.previous());
+        }
+    }
 }
