@@ -1,6 +1,9 @@
 package coderpad.io;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import org.junit.*;
 import org.junit.runner.*;
 
@@ -24,9 +27,10 @@ public class Solution {
     }
 
     public List<Integer> librarySort(int[] data) {
-        List<Integer> l1 = new ArrayList<Integer>();
-        Collections.addAll(Arrays.asList(data));
+        List<Integer> l1 = IntStream.of(data).boxed().collect(Collectors.toList());
+        System.out.println(l1.getClass());
         l1.sort(Comparator.naturalOrder());
+        l1.forEach(x -> System.out.println(x));
         return l1;
     }
 
@@ -44,8 +48,13 @@ public class Solution {
         int[] data = new int[]{1, 10, 2, 10, 11, 8, -1};
         List<Integer> l1 = new Solution().librarySort(data);
         ListIterator<Integer> itr = l1.listIterator();
-        while ( itr.hasNext() ) {
-            Assert.assertTrue(itr.next() >= itr.previous());
+        Integer prev = null ;
+        while( itr.hasNext() ) {
+            Integer cur = itr.next();
+            if ( itr.previousIndex() > 0 ) {
+                Assert.assertTrue(cur >= prev);
+            }
+            prev = cur;
         }
     }
 }
