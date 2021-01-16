@@ -2,17 +2,17 @@ package features;
 
 import java.util.*;
 
-public class Comparators<T extends Comparable, S> {
+public class MyComparator<T extends Comparable, S> {
     private List<T> data;
     private S metaObj;
 
-    public Comparators(S metaObj) {
+    public MyComparator(S metaObj) {
         this.data = new ArrayList<>();
         this.metaObj = metaObj;
     }
 
     public static void main(String[] args) {
-        Comparators<MyTuple<Integer,String>,String> obj = new Comparators<>("BinaryHeap");
+        MyComparator<MyTuple<Integer,String>,String> obj = new MyComparator<>("BinaryHeap");
         obj.data.add(new MyTuple<>(1, "One"));
         obj.data.add(new MyTuple<>(2, "Two"));
         obj.data.add(new MyTuple<>(3, "Three"));

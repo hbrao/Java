@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Collections {
+public class MyCollections {
     public static void main(String[] args) {
         int[] data = {1,2,3,4,5};
 
@@ -19,5 +19,6 @@ public class Collections {
         Set set = (Set) linkedList.stream().collect(Collectors.toCollection(TreeSet::new));
         set.add(222);
         set.forEach(s -> System.out.println(s));
+
     }
 }
