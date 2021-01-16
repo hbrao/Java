@@ -12,7 +12,7 @@ public class MyGenericClass<T extends Comparable, S> {
     }
 
     public static void main(String[] args) {
-        MyGenericClass<MyTuple,String> obj = new MyGenericClass<>("BinaryHeap");
+        MyGenericClass<MyTuple<Integer,String>,String> obj = new MyGenericClass<>("BinaryHeap");
         obj.data.add(new MyTuple<>(1, "One"));
         obj.data.add(new MyTuple<>(2, "Two"));
         obj.data.add(new MyTuple<>(3, "Three"));
