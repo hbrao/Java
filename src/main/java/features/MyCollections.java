@@ -20,5 +20,12 @@ public class MyCollections {
         set.add(222);
         set.forEach(s -> System.out.println(s));
 
+        List<List<Integer>> res = new LinkedList<>();
+
+        List<Integer> aL1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+        List<Integer> aL1sub1 = aL1.subList(0, 3);
+        aL1sub1.set(0, 1000);
+        System.out.println("--------");
+        aL1.forEach( e -> System.out.println(e));
     }
 }
