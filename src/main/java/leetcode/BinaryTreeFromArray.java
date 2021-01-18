@@ -83,10 +83,10 @@ public class BinaryTreeFromArray {
     @Test
     public void testBinaryTree() {
         TreeNode root  = buildTree(this.preorder, this.inorder);
-        Assert.assertTrue(IntStream.of(inorder).boxed().collect(Collectors.toList()).equals(inOrder(root)));
+        Assert.assertTrue(IntStream.of(inorder).boxed().collect(Collectors.toList()).equals(inOrderIterative(root)));
     }
 
-    private List<Integer> inOrder(TreeNode root) {
+    private List<Integer> inOrderIterative(TreeNode root) {
         Deque<TreeNode> stk = new LinkedList<>();
         List<Integer> data = new ArrayList<>();
         TreeNode n  = root;

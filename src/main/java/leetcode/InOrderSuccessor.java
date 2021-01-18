@@ -31,11 +31,10 @@ public class InOrderSuccessor {
     }
 
     public TreeNode findLeftMostNode(TreeNode n) {
-        if (n.left != null) {
-            return findLeftMostNode(n.left);
-        } else {
-            return n;
+        while ( n.left != null ) {
+            n = n.left;
         }
+        return n;
     }
 
     @Test
