@@ -1,11 +1,13 @@
 package leetcode;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @RunWith(Parameterized.class)
 public class BinaryTreeFromArray {
@@ -38,7 +40,7 @@ public class BinaryTreeFromArray {
         return buildTreeHelper(pre, ino);
     }
 
-    public TreeNode buildTreeHelper(List<Integer> preorder, List<Integer> inorder) {;
+    public TreeNode buildTreeHelper(List<Integer> preorder, List<Integer> inorder) {
         //Base Case 1
         if ( preorder.isEmpty() && inorder.isEmpty()) {
             return null;
@@ -70,11 +72,24 @@ public class BinaryTreeFromArray {
     }
 
     @Test
-    public  void testBinaryTree() {
-        //TODO Check the complete tree.
+    public void testBinaryTree() {
         TreeNode root  = buildTree(this.preorder, this.inorder);
-        System.out.println(root.val);
-        System.out.println(root.left != null ? root.left.val : "null");
-        System.out.println(root.right != null ? root.right.val : "null");
+        Assert.assertTrue(IntStream.of(inorder).boxed().collect(Collectors.toList()).equals(inOrder(root)));
+    }
+
+    private List<Integer> inOrder(TreeNode root) {
+        Deque<TreeNode> stk = new LinkedList<>();
+        List<Integer> data = new ArrayList<>();
+        TreeNode n  = root;
+        while ( ! stk.isEmpty()  || n != null ) {
+            while ( n != null ) {
+                stk.push(n);
+                n = n.left;
+            }
+            n = stk.pop();
+            data.add(n.val);
+            n = n.right;
+        }
+        return data;
     }
 }
