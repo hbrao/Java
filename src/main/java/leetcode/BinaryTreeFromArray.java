@@ -22,6 +22,15 @@ public class BinaryTreeFromArray {
         this.expected = expected;
     }
 
+    public BinaryTreeFromArray(int[] preorder, int[] inorder) {
+        this.preorder = preorder;
+        this.inorder = inorder;
+    }
+
+    public BinaryTreeFromArray() {
+
+    }
+
     @Parameterized.Parameters
     public static Collection testData() {
         return Arrays.asList(new Object[][] {
