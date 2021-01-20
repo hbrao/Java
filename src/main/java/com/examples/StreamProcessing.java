@@ -3,9 +3,9 @@ package com.examples;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.*;
 
 public class StreamProcessing {
     public static void main(String[] args) {
@@ -15,10 +15,10 @@ public class StreamProcessing {
         int[] arr2 = IntStream.range(0, 11).map( e -> 0 ).toArray();
         System.out.println(Arrays.toString(arr2));
 
-        List<Integer> arrList = IntStream.range(10, 21).boxed().collect(Collectors.toList());
-        System.out.println(arrList.stream().map( e -> e.toString()).collect(Collectors.joining(",")));
+        List<Integer> arrList = IntStream.range(10, 21).boxed().collect(toList());
+        System.out.println(arrList.stream().map( e -> e.toString()).collect(joining(",")));
 
-        IntSummaryStatistics stats =  arrList.stream().collect(Collectors.summarizingInt(Integer::intValue));
+        IntSummaryStatistics stats =  arrList.stream().collect(summarizingInt(Integer::intValue));
         System.out.println(stats.getSum() + ";" + stats.getAverage());
     }
 }
