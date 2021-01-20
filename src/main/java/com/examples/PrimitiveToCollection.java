@@ -46,14 +46,7 @@ public class PrimitiveToCollection {
                 toSet()
         ));
         System.out.println("Map 5 (sorted reverse) Group repeated values into Set");
-        set = hm5.entrySet();
-        Iterator i = set.iterator();
-        // Traverse map and print elements
-        while (i.hasNext()) {
-            Map.Entry me = (Map.Entry)i.next();
-            System.out.print(me.getKey() + ": ");
-            System.out.println(me.getValue());
-        }
+        hm5.entrySet().forEach( (Map.Entry<Integer,Set<Integer>> e) -> System.out.println(e.getKey() + " : " + e.getValue()) );
 
         //Method 2
         List<Integer> aL1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
