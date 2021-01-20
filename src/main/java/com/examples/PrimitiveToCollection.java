@@ -7,26 +7,32 @@ import java.util.stream.IntStream;
 public class PrimitiveToCollection {
     public static void main(String[] args) {
         //Method 1
-        int[] data = {1,2,3,4,5};
+        int[] data = {1,2,2,3,4,4,5};
 
         List arrList = IntStream.of(data).boxed().collect(Collectors.toList());
         arrList.add(100);
         System.out.println("Array List = "+arrList);
 
-        List linkedList = (List) arrList.stream().collect(Collectors.toCollection(LinkedList::new));
+        List linkedList = IntStream.of(data).boxed().collect(Collectors.toCollection(LinkedList::new));
         linkedList.add(111);
         System.out.println("Linked List = "+linkedList);
 
-        Set set = (Set) linkedList.stream().collect(Collectors.toSet());
+        Set set = IntStream.of(data).boxed().collect(Collectors.toSet());
         set.add(222);
         System.out.println("Set = "+set);
 
-        SortedSet sortedSet = (SortedSet) linkedList.stream().collect(Collectors.toCollection(TreeSet::new));
+        SortedSet sortedSet = IntStream.of(data).boxed().collect(Collectors.toCollection(TreeSet::new));
         set.add(222);
         System.out.println("Sorted Set = "+sortedSet);
 
-        Map map = (Map) IntStream.of(data).boxed().collect(Collectors.toMap((i) -> i.intValue(), (i) -> i.toString()));
-        System.out.println("Map = "+map);
+        Map hm1 = IntStream.of(data).boxed().distinct().collect(Collectors.toMap((i) -> i.intValue(), (i) -> i.toString()));
+        System.out.println("Map 1 = "+hm1);
+
+        Map<Integer, Long> hm2= IntStream.of(data).boxed().collect(Collectors.groupingBy(Integer::intValue,Collectors.counting()));
+        System.out.println("Map 2= "+hm2);
+
+        Map<Integer, List<Integer>> hm3= IntStream.of(data).boxed().collect(Collectors.groupingBy(Integer::intValue));
+        System.out.println("Map 3 = "+hm3);
 
         //Method 2
         List<Integer> aL1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
