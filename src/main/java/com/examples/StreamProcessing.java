@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class MyStream {
+public class StreamProcessing {
     public static void main(String[] args) {
         int[] arr = IntStream.range(0, 11).toArray();
         System.out.println(Arrays.toString(arr));
