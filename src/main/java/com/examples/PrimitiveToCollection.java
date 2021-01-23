@@ -17,14 +17,10 @@ public class PrimitiveToCollection {
 
         //Method 2
         int[] data = {1,2,2,3,4,4,5};
-        //NOTE: <Integer> on LHS won't work as data is an array of primitives
-        List arrList1 = new ArrayList<>(Arrays.asList(data));
+
+        List<Integer> arrList1 = IntStream.of(data).boxed().collect(toList());
         arrList1.add(100);
         System.out.println("Array List = "+arrList1);
-
-        List<Integer> arrList2 = IntStream.of(data).boxed().collect(toList());
-        arrList2.add(100);
-        System.out.println("Array List = "+arrList2);
 
         List<Integer> linkedList = IntStream.of(data).boxed().collect(toCollection(LinkedList::new));
         linkedList.add(111);
@@ -41,11 +37,12 @@ public class PrimitiveToCollection {
         Map<Integer,String> hm1 = IntStream.of(data).boxed().distinct().collect(toMap((i) -> i.intValue(), (i) -> i.toString()));
         System.out.println("Map 1 Distinct keys= "+hm1);
 
-        Map<Integer, Long> hm2= IntStream.of(data).boxed().collect(groupingBy(Integer::intValue,counting()));
-        System.out.println("Map 2 Count occurrences of each element= "+hm2);
+        Map<Integer, List<Integer>> hm2= IntStream.of(data).boxed().collect(groupingBy(Integer::intValue));
+        System.out.println("Map 2 Group repeated values into List= "+hm2);
 
-        Map<Integer, List<Integer>> hm3= IntStream.of(data).boxed().collect(groupingBy(Integer::intValue));
-        System.out.println("Map 3 Group repeated values into List= "+hm3);
+        Map<Integer, Long> hm3= IntStream.of(data).boxed().collect(groupingBy(Integer::intValue,counting()));
+        System.out.println("Map 3 Count occurrences of each element= "+hm3);
+
 
         Map<Integer, Set<String>> hm4= IntStream.of(data).boxed().collect(groupingBy(
                 Integer::intValue,
