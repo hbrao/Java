@@ -8,6 +8,7 @@ public class PrimitiveToCollection {
     public static void main(String[] args) {
 
         //Method 1
+        //NOTE: List.of Map.of Set.of etc. returns an immutable list.
         List<Integer> aL1 = new ArrayList<>(List.of(1, 2, 2, 3, 4, 4, 5));
         System.out.println("List contents: " + aL1);
         List<Integer> aL1sub1 = aL1.subList(0, 3);
