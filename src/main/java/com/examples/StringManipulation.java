@@ -45,9 +45,9 @@ public class StringManipulation {
             System.out.format("Result = %d  %d \n", (int) ascii.charAt(i), Character.codePointAt(ascii, i));
         }
 
-        //Get words from a string
+        //Get words or numbers from a string
         String text = "Hi, There ! You can reach me at hello@example.com or +91 9701790048.";
-        Matcher m = Pattern.compile("[a-zA-Z]+").matcher(text);
+        Matcher m = Pattern.compile("[a-zA-Z|0-9]+").matcher(text);
         while ( m.find() ) System.out.print(m.group() + ", ");
         System.out.println();
     }
