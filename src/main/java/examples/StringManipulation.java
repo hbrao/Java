@@ -16,6 +16,9 @@ public class StringManipulation {
         //Get sub string [s, e]
         System.out.println(s.substring(6,13));
 
+        //Get sub string [s, ]
+        System.out.println(s.substring(1));
+
         //Remove vowels.
         String vowels = "aAeEiIoOuU";
         StringBuilder sb1 = new StringBuilder(s);
