@@ -1,6 +1,6 @@
-package ds.graph;
+package data.structures.graph;
 
-import ds.linear.Queue;
+import data.structures.lists.Queue;
 
 import java.util.List;
 

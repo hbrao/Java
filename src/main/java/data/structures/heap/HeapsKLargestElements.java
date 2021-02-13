@@ -1,4 +1,4 @@
-package ds.heap;
+package data.structures.heap;
 
 /**
  * Created by jananiravi on 12/22/15.

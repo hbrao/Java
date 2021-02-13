@@ -1,4 +1,4 @@
-package ds.heap;
+package data.structures.heap;
 
 
 public class MinHeap<T extends Comparable> extends Heap<T> {

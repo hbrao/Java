@@ -1,4 +1,4 @@
-package ds.linear;
+package data.structures.lists;
 
 import java.lang.reflect.Array;
 

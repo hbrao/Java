@@ -1,4 +1,4 @@
-package ds.heap;
+package data.structures.heap;
 
 public class MaxHeap<T extends Comparable> extends Heap<T> {
 

@@ -1,4 +1,4 @@
-package ds.tree;
+package data.structures.tree;
 
 /**
  * Created by jananiravi on 12/13/15.

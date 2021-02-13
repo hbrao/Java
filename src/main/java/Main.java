@@ -1,4 +1,4 @@
-import ds.linear.LinkedList;
+import data.structures.lists.LinkedList;
 
 import java.util.List;
 

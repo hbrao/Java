@@ -1,4 +1,4 @@
-package ds.linear;
+package data.structures.lists;
 
 public class Stack<T> {
 

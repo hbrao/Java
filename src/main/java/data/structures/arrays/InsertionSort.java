@@ -1,4 +1,4 @@
-package ds.sorting;
+package data.structures.arrays;
 
 /**
  * Created by jananiravi on 11/14/15.

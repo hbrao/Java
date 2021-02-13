@@ -1,4 +1,4 @@
-package ds.graph;
+package data.structures.graph;
 
 import java.util.List;
 
