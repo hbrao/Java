@@ -4,6 +4,7 @@ import org.junit.*;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.List;
 
 public class InOrderSuccessor {
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
@@ -39,7 +40,7 @@ public class InOrderSuccessor {
 
     @Test
     public void testInOrderSuccessor() {
-        TreeNode root = new BinaryTreeFromArray().buildTree(new int[]{2,1,3}, new int[]{1,2,3});
+        TreeNode root = new BinaryTreeFromArray(List.of(new int[]{2,1,3}, new int[]{1,2,3})).buildTree();
         TreeNode p = root.left;
         TreeNode successor = inorderSuccessor(root, p);
         Assert.assertTrue(root.val == successor.val);

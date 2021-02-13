@@ -16,27 +16,21 @@ public class BinaryTreeFromArray {
     int[] inorder;
     int[] expected;
 
-    public BinaryTreeFromArray(List<int []> input, int[] expected) {
+    public BinaryTreeFromArray(List<int []> input) {
         this.preorder  = input.get(0);
         this.inorder = input.get(1);
-        this.expected = expected;
-    }
-
-    public BinaryTreeFromArray(int[] preorder, int[] inorder) {
-        this.preorder = preorder;
-        this.inorder = inorder;
-    }
-
-    public BinaryTreeFromArray() {
-
     }
 
     @Parameterized.Parameters
     public static Collection testData() {
         return Arrays.asList(new Object[][] {
-            { Arrays.asList(new int[] {3,9,20,15,7}, new int[] {9,3,15,20,7}) , new int[] {3,9,20,-1,-1,15,7} },
-            { Arrays.asList(new int[] {1,2,3}, new int[]{3, 2, 1}) , new int[] {3,9,20,-1,-1,15,7} }
+            { Arrays.asList(new int[] {3,9,20,15,7}, new int[] {9,3,15,20,7}) },
+            { Arrays.asList(new int[] {1,2,3}, new int[]{3, 2, 1}) }
         });
+    }
+
+    public TreeNode buildTree() {
+        return buildTree(this.preorder, this.inorder);
     }
 
     public TreeNode buildTree(int[] preorder, int[] inorder) {
