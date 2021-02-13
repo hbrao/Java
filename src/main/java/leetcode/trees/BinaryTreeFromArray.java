@@ -14,21 +14,14 @@ public class BinaryTreeFromArray {
 
     int[] preorder;
     int[] inorder;
-    int[] expected;
 
+    //Constructor used by JUnit to set test data.
     public BinaryTreeFromArray(List<int []> input) {
         this.preorder  = input.get(0);
         this.inorder = input.get(1);
     }
 
-    @Parameterized.Parameters
-    public static Collection testData() {
-        return Arrays.asList(new Object[][] {
-            { Arrays.asList(new int[] {3,9,20,15,7}, new int[] {9,3,15,20,7}) },
-            { Arrays.asList(new int[] {1,2,3}, new int[]{3, 2, 1}) }
-        });
-    }
-
+    //API to construct a Binary tree from pre-order and in-order array.
     public TreeNode buildTree() {
         return buildTree(this.preorder, this.inorder);
     }
@@ -74,12 +67,7 @@ public class BinaryTreeFromArray {
         return rootNode;
     }
 
-    @Test
-    public void testBinaryTree() {
-        TreeNode root  = buildTree(this.preorder, this.inorder);
-        Assert.assertTrue(IntStream.of(inorder).boxed().collect(Collectors.toList()).equals(inOrderIterative(root)));
-    }
-
+    //Return inorder traversal of a binary tree given its root node.
     private List<Integer> inOrderIterative(TreeNode root) {
         Deque<TreeNode> stk = new LinkedList<>();
         List<Integer> data = new ArrayList<>();
@@ -94,5 +82,21 @@ public class BinaryTreeFromArray {
             n = n.right;
         }
         return data;
+    }
+
+    //Test Data
+    @Parameterized.Parameters
+    public static Collection testData() {
+        return Arrays.asList(new Object[][] {
+                { Arrays.asList(new int[] {3,9,20,15,7}, new int[] {9,3,15,20,7}) },
+                { Arrays.asList(new int[] {1,2,3}, new int[]{3, 2, 1}) }
+        });
+    }
+
+    //Tests
+    @Test
+    public void testBinaryTree() {
+        TreeNode root  = buildTree(this.preorder, this.inorder);
+        Assert.assertTrue(IntStream.of(inorder).boxed().collect(Collectors.toList()).equals(inOrderIterative(root)));
     }
 }

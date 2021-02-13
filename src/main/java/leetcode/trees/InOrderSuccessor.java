@@ -45,5 +45,4 @@ public class InOrderSuccessor {
         TreeNode successor = inorderSuccessor(root, p);
         Assert.assertTrue(root.val == successor.val);
     }
-
 }
