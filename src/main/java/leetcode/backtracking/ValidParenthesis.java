@@ -18,9 +18,11 @@ public class ValidParenthesis {
         result.forEach( c -> System.out.println(c));
     }
 
+    //This generates all possible permutations and discards invalid ones.
     public static void generateParenthesisPermutations(char[] buffer, Integer pos, List<String> collector) {
         if ( buffer.length == pos ) {
             String c = new String(buffer);
+            //Discard invalid permutation
             if ( isValidParenthesis(c))
                 collector.add(c);
         } else {
@@ -44,6 +46,7 @@ public class ValidParenthesis {
         return balance == 0;
     }
 
+    //This does NOT generate any invalid permutations
     public static void generateParenthesisBacktrack(List<String> collector, String buffer, Integer open, Integer close, Integer n) {
         if ( buffer.length() == 2 * n) {
             collector.add(buffer);
