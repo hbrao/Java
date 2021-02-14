@@ -8,8 +8,21 @@ public class Parenthesis {
     public static void main(String[] args) {
         Integer n = 3;
         List<String> result = new ArrayList<>();
-        generateParenthesis(new char[ 2 * n], 0, result);
+        generateParenthesisBacktrack(result, "", 0, 0, n);
         result.forEach( c -> System.out.println(c));
+    }
+
+    public static void generateParenthesisBacktrack(List<String> collector, String buffer, Integer open, Integer close, Integer n) {
+        if ( buffer.length() == 2 * n) {
+            collector.add(buffer);
+            return ;
+        }
+        if ( open < n ) {
+            generateParenthesisBacktrack(collector, buffer + "(", open + 1, close, n);
+        }
+        if ( close < open ) {
+            generateParenthesisBacktrack(collector, buffer + ")", open , close + 1, n);
+        }
     }
 
     public static void generateParenthesis(char[] buffer, Integer pos, List<String> collector) {
