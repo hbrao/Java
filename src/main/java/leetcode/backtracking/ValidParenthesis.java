@@ -3,7 +3,7 @@ package leetcode.backtracking;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Parenthesis {
+public class ValidParenthesis {
 
     public static void main(String[] args) {
         Integer n = 3;
