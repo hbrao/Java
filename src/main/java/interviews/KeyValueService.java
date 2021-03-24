@@ -46,7 +46,12 @@ public class KeyValueService {
     public void backup() {
         new Thread( () -> {
                 try {
-                    PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/java/interviews/kvstore2.txt",true));
+                    PrintWriter pw = new PrintWriter(
+                            new FileOutputStream(
+                                    "src/main/java/interviews/kvstore_"+System.currentTimeMillis()+".txt"
+                                    ,true
+                            )
+                    );
                     Boolean firstLine = true;
                     HashMap<String,String> cln = (HashMap<String, String>) kvStore.clone();
                     for( Map.Entry<String,String> memData :  cln.entrySet() ) {
