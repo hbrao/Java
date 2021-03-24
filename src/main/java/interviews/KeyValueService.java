@@ -44,8 +44,7 @@ public class KeyValueService {
     }
 
     public void backup() {
-        new Thread(
-            () -> {
+        new Thread( () -> {
                 try {
                     PrintWriter pw = new PrintWriter(new FileOutputStream("src/main/java/interviews/kvstore2.txt",true));
                     Boolean firstLine = true;
