@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.*;
 
-public class BatchProcessing {
+public class Streams {
     public static void main(String[] args) {
         int[] arr = IntStream.range(0, 11).toArray();
         System.out.println(Arrays.toString(arr));
