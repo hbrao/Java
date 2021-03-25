@@ -2,19 +2,19 @@ package examples;
 
 import java.util.*;
 
-public class OrderBy<T extends Comparable> {
+public class GenericComparator<T extends Comparable> {
     private List<T> data;
 
-    public OrderBy() {
+    public GenericComparator() {
         this.data = new ArrayList<>();
     }
 
-    public OrderBy(List<T> data) {
+    public GenericComparator(List<T> data) {
         this.data = data;
     }
 
     public static void main(String[] args) {
-        OrderBy<GenericPoint<Integer,String>> obj = new OrderBy<>();
+        GenericComparator<GenericPoint<Integer,String>> obj = new GenericComparator<>();
         obj.data.add(new GenericPoint<>(1, "One"));
         obj.data.add(new GenericPoint<>(2, "Two"));
         obj.data.add(new GenericPoint<>(3, "Three"));
@@ -44,7 +44,7 @@ public class OrderBy<T extends Comparable> {
         obj.data.sort(Comparator.nullsFirst(byY).thenComparing(byX.reversed()));
         obj.data.forEach((e) -> System.out.println(e));
 
-        OrderBy<Integer> obj2 = new OrderBy<>(arrayToList(new Integer[] {11, 2, 33}));
+        GenericComparator<Integer> obj2 = new GenericComparator<>(arrayToList(new Integer[] {11, 2, 33}));
         System.out.println("Sorted integers");
         obj2.data.sort(Comparator.naturalOrder());
         obj2.data.forEach( e-> System.out.println(e));
