@@ -1,4 +1,4 @@
-package practice.trees;
+package practice.recursion;
 
 import org.junit.Assert;
 import org.junit.Test;
