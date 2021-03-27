@@ -18,7 +18,10 @@ public class PowerSet {
         List<Integer> nums_lst = IntStream.of(nums).boxed().collect(Collectors.toList());
 
         List<List<Integer>> result = new LinkedList<>();
+
+        //Add empty set
         result.add(new ArrayList<>());
+
         List<Integer> buffer = new LinkedList<>();
         subsetHelper(nums_lst, buffer, 0, result);
         return result;
@@ -29,12 +32,16 @@ public class PowerSet {
             return;
         }
 
+        // Total number branches = size of of input
         for( Integer i = first; i < nums_lst.size() ; i ++ ) {
+            //Collect subset
             buffer.add(nums_lst.get(i));
             collector.add(new ArrayList<>(buffer));
+
+            //Recursive call to collect higher sized subsets.
             subsetHelper(nums_lst, buffer, i + 1,  collector);
 
-            //Backtrack
+            //Backtrack to re-use the buffer in next branch.
             buffer.remove(buffer.size() - 1);
         }
     }
