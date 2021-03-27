@@ -18,6 +18,19 @@ public class ValidParenthesis {
         result.forEach( c -> System.out.println(c));
     }
 
+    public static Boolean isValidParenthesis(String input) {
+        Integer balance = 0;
+        for ( Character c : input.toCharArray() ) {
+            if ( c == '(' ) {
+                balance += 1 ;
+            } else {
+                balance -= 1 ;
+            }
+            if ( balance < 0 ) return false ;
+        }
+        return balance == 0;
+    }
+
     //This generates all possible permutations and discards invalid ones.
     public static void generateParenthesisPermutations(char[] buffer, Integer pos, List<String> collector) {
         if ( buffer.length == pos ) {
@@ -31,19 +44,6 @@ public class ValidParenthesis {
             buffer[pos] = ')';
             generateParenthesisPermutations(buffer, pos + 1, collector);
         }
-    }
-
-    public static Boolean isValidParenthesis(String input) {
-        Integer balance = 0;
-        for ( Character c : input.toCharArray() ) {
-            if ( c == '(' ) {
-               balance += 1 ;
-            } else {
-               balance -= 1 ;
-            }
-            if ( balance < 0 ) return false ;
-        }
-        return balance == 0;
     }
 
     //This does NOT generate any invalid permutations
