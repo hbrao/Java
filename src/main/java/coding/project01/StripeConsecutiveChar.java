@@ -1,6 +1,4 @@
-package interviews.oracle;
-
-import java.util.stream.IntStream;
+package coding.project01;
 
 /*
 Write a function that takes two parameters, a string and an integer.

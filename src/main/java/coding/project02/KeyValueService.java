@@ -1,4 +1,4 @@
-package interviews.usbank;
+package coding.project02;
 
 import java.io.File;
 import java.io.FileNotFoundException;
