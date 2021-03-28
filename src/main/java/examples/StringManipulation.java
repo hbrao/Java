@@ -1,7 +1,9 @@
 package examples;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class StringManipulation {
 
@@ -18,6 +20,10 @@ public class StringManipulation {
 
         //Get sub string [s, ]
         System.out.println(s.substring(1));
+
+        //Convert to list of Characters
+        List<Character> chrList = s.chars().mapToObj( val -> (char) val).collect(Collectors.toList());
+        System.out.println(chrList.subList(6,13));
 
         //Remove vowels.
         String vowels = "aAeEiIoOuU";
