@@ -21,7 +21,7 @@ public class Combinations {
         List<List<Integer>> result = new LinkedList<>();
 
         //Add empty set
-        result.add(new ArrayList<>());
+        if ( k == 0 )  result.add(new ArrayList<>());
 
         List<Integer> buffer = new LinkedList<>();
         subsetHelper(nums_lst, buffer, 0, result, k);
