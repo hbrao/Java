@@ -23,7 +23,7 @@ public class Combinations {
         //Add empty set
         if ( k == 0 )  result.add(new ArrayList<>());
 
-        subsetHelper(nums_lst, new ArrayList<Ineger>(), 0, result, k);
+        subsetHelper(nums_lst, new ArrayList<Integer>(), 0, result, k);
         return result;
     }
 
