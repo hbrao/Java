@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class PowerSet {
+public class Combinations {
 
     public static void main(String[] args) {
         //Set k = 0 to generate power sets
