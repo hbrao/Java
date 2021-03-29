@@ -29,7 +29,7 @@ public class Combinations {
     }
 
     public static void subsetHelper(List<Integer> nums_lst, List<Integer> buffer, Integer first,  List<List<Integer>> collector, Integer k) {
-        if ( first == nums_lst.size() ) {
+        if ( k != 0 && first == k ) {
             return;
         }
 
