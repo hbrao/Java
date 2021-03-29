@@ -9,12 +9,13 @@ import java.util.stream.IntStream;
 public class PowerSet {
 
     public static void main(String[] args) {
-        new PowerSet().subsets(IntStream.range(1, 5).toArray()).forEach( lst -> {
+        //Set k = 0 to generate power sets
+        subsets(IntStream.range(1, 5).toArray(), 0).forEach( lst -> {
             System.out.println(lst);
         });
     }
 
-    public List<List<Integer>> subsets(int[] nums) {
+    public static List<List<Integer>> subsets(int[] nums, Integer k) {
         List<Integer> nums_lst = IntStream.of(nums).boxed().collect(Collectors.toList());
 
         List<List<Integer>> result = new LinkedList<>();
@@ -23,11 +24,11 @@ public class PowerSet {
         result.add(new ArrayList<>());
 
         List<Integer> buffer = new LinkedList<>();
-        subsetHelper(nums_lst, buffer, 0, result);
+        subsetHelper(nums_lst, buffer, 0, result, k);
         return result;
     }
 
-    public void subsetHelper(List<Integer> nums_lst, List<Integer> buffer, Integer first,  List<List<Integer>> collector) {
+    public static void subsetHelper(List<Integer> nums_lst, List<Integer> buffer, Integer first,  List<List<Integer>> collector, Integer k) {
         if ( first == nums_lst.size() ) {
             return;
         }
@@ -36,10 +37,10 @@ public class PowerSet {
         for( Integer i = first; i < nums_lst.size() ; i ++ ) {
             //Collect subset
             buffer.add(nums_lst.get(i));
-            collector.add(new ArrayList<>(buffer));
+            if ( buffer.size() == k || k == 0) collector.add(new ArrayList<>(buffer));
 
             //Recursive call to collect higher sized subsets.
-            subsetHelper(nums_lst, buffer, i + 1,  collector);
+            subsetHelper(nums_lst, buffer, i + 1,  collector, k);
 
             //Backtrack to re-use the buffer in next branch.
             buffer.remove(buffer.size() - 1);

@@ -1,5 +1,6 @@
 package examples;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,7 +24,12 @@ public class StringManipulation {
 
         //Convert to list of Characters
         List<Character> chrList = s.chars().mapToObj( val -> (char) val).collect(Collectors.toList());
-        System.out.println(chrList.subList(6,13));
+        List<Character> charSubList  = chrList.subList(6,13);
+        System.out.println(charSubList);
+
+        //Shuffle list of characters
+        Collections.shuffle(charSubList);
+        System.out.println(charSubList);
 
         //Remove vowels.
         String vowels = "aAeEiIoOuU";
