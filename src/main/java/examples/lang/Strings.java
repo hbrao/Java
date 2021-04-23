@@ -1,4 +1,4 @@
-package examples;
+package examples.lang;
 
 import java.util.Collections;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-public class StringManipulation {
+public class Strings {
 
     public static void main(String[] args) {
         String s = "Daily Problem Solving";

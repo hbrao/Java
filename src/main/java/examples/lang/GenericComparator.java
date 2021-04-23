@@ -1,4 +1,4 @@
-package examples;
+package examples.lang;
 
 import java.util.*;
 

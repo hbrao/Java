@@ -1,14 +1,24 @@
-package examples;
+package examples.stream;
 
 import java.util.*;
 import java.util.stream.IntStream;
+
 import static java.util.stream.Collectors.*;
 
-public class PrimitiveToCollection {
+public class Streams {
     public static void main(String[] args) {
+        int[] arr = IntStream.range(0, 11).toArray();
+        System.out.println(Arrays.toString(arr));
 
-        //Method 1
-        //NOTE: List.of , Set.of returns an immutable list.
+        int[] arr2 = IntStream.range(0, 11).map( e -> 0 ).toArray();
+        System.out.println(Arrays.toString(arr2));
+
+        List<Integer> arrList = IntStream.range(10, 21).boxed().collect(toList());
+        System.out.println(arrList.stream().map( e -> e.toString()).collect(joining(",")));
+
+        IntSummaryStatistics stats =  arrList.stream().collect(summarizingInt(Integer::intValue));
+        System.out.println(stats.getSum() + ";" + stats.getAverage());
+
         List<Integer> aL1 = new ArrayList<>(List.of(1, 2, 2, 3, 4, 4, 5));
         System.out.println("List contents: " + aL1);
         List<Integer> aL1sub1 = aL1.subList(0, 3);
@@ -16,7 +26,6 @@ public class PrimitiveToCollection {
         System.out.println("List contents: " + aL1);
         System.out.println("Sub list contents: " + aL1sub1);
 
-        //Method 2
         int[] data = {1,2,2,3,4,4,5};
 
         List<Integer> arrList1 = IntStream.of(data).boxed().collect(toList());
