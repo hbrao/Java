@@ -1,45 +1,61 @@
 package examples.threading;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.locks.LockSupport;
+import java.util.*;
+import java.util.stream.*;
+import java.util.concurrent.locks.*;
 
 public class Basics {
 
     public static void main(String[] args) {
-        new Basics().scheduledThread(1000L);
-    }
+        Basics sol = new Basics();
 
-    public void parkUnPark(Long millis) {
-        Thread t = new Thread( () -> {
-            System.out.println("Before parking thread :"+ Thread.currentThread().getName());
-            LockSupport.park();
-            System.out.println("Un parked !");
-        });
+        //Simple thread
+        sol.startThread();
 
-        t.start();
+        //Scheduled task
+        sol.scheduledThread(1000L, 2 * 1000L);
 
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        //ThreadGroup park / un park.
+        ThreadGroup grp = sol.startThreadGroup();
+        Thread[] threads = new Thread[grp.activeCount()];
+        grp.enumerate(threads);
+        for(Thread t : threads) {
+            LockSupport.unpark(t);
         }
-
-        LockSupport.unpark(t);
     }
 
-    public void scheduledThread(Long millis) {
-        TimerTask task = new TimerTask() {
+    public void startThread() {
+        new Thread( new Runnable() {
             @Override
             public void run() {
-                System.out.println("Task started at " + DateTimeFormatter.ISO_DATE_TIME.format(LocalDateTime.now()));
+                System.out.println("Thread " + Thread.currentThread().getName() + " started execution..");
+            }
+        }).start();
+    }
+
+    public void scheduledThread(Long delay, Long period) {
+        TimerTask task = new TimerTask() { // Factory method run()
+            @Override
+            public void run() {
+                System.out.println("Timed task running at " + System.currentTimeMillis());
             }
         };
 
         Timer t = new Timer();
-        t.schedule(task, millis, millis);
+        t.schedule(task, delay, period);
+    }
 
+    public ThreadGroup startThreadGroup() {
+        ThreadGroup grp = new ThreadGroup("TG01");
+
+        IntStream.range(1,6).boxed().forEach( val -> {
+            new Thread(grp, () -> {
+                System.out.printf("T%s: ..... %n", val);
+                LockSupport.park();
+                System.out.printf("T%s: un parked ! %n", val);
+            }, val.toString()).start();
+        });
+
+        return grp;
     }
 }

@@ -1,10 +1,8 @@
 package examples.lang;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.regex.*;
+import java.util.stream.*;
 
 public class Strings {
 
