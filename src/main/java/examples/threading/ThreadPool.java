@@ -5,8 +5,9 @@ import java.util.stream.*;
 
 public class ThreadPool {
     private static Integer nextGroupId = 1;
-    final private List<Runnable> runQueue = new LinkedList<>();
     final private ThreadGroup grp;
+    final private List<Runnable> runQueue = new LinkedList<>();
+    private volatile Boolean running = true;
 
     public ThreadPool(Integer poolSize) {
         Integer groupId ;
@@ -49,11 +50,12 @@ public class ThreadPool {
         }
 
         public void run() {
-            while(true) {
+            while(running) {
                 try {
                     take().run();
                 } catch (InterruptedException e) {
-                    e.printStackTrace();
+                    //Stop all workers when one of the task gets interrupted / cancelled.
+                    running = false;
                 }
             }
         }
