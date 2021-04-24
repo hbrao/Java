@@ -21,11 +21,10 @@ public class Streams {
         IntSummaryStatistics stats =  arrList.stream().collect(Collectors.summarizingInt(Integer::intValue));
         System.out.println(stats.getSum() + ";" + stats.getAverage());
 
-        //Sub lists
+        //Sub lists - Modifying sub list in turn modifies original list.
         List<Integer> aL1 = new ArrayList<>(List.of(1, 2, 2, 3, 4, 4, 5));
         System.out.println("List contents: " + aL1);
         List<Integer> aL1sub1 = aL1.subList(0, 3);
-        //Modify sub list in turn modifies original list.
         aL1sub1.set(0, 1000);
         System.out.println("List contents: " + aL1);
         System.out.println("Sub list contents: " + aL1sub1);
