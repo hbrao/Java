@@ -1,6 +1,6 @@
 package algorithms.graph;
 
-import algorithms.lists.Queue;
+import algorithms.linear.Queue;
 
 import java.util.List;
 

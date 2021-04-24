@@ -1,4 +1,4 @@
-package algorithms.lists;
+package algorithms.linear;
 
 public class Stack<T> {
 
