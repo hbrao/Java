@@ -1,4 +1,4 @@
-package examples.lang;
+package examples.comparator;
 
 class GenericPoint<X extends Comparable, Y extends Comparable> implements Comparable {
     X x;

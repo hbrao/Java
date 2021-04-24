@@ -1,4 +1,4 @@
-package examples.lang;
+package examples.text;
 
 import java.util.*;
 import java.util.regex.*;
