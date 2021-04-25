@@ -1,18 +1,19 @@
 package examples.threading;
 
 import java.util.*;
+import java.util.concurrent.atomic.*;
 import java.util.stream.*;
 
 public class ThreadPool {
-    private static Integer nextGroupId = 1;
-    final private ThreadGroup grp;
-    final private List<Runnable> runQueue = new LinkedList<>();
+    private static final AtomicInteger nextGroupId = new AtomicInteger(1);
+    private final ThreadGroup grp;
+    private final List<Runnable> runQueue = new LinkedList<>();
     private volatile Boolean running = true;
 
     public ThreadPool(Integer poolSize) {
         Integer groupId ;
         synchronized (ThreadPool.class) {
-            groupId = nextGroupId ++;
+            groupId = nextGroupId.incrementAndGet();
         }
         grp = new ThreadGroup("Group "+ groupId);
         IntStream.range(1, poolSize + 1).forEach( workerId -> {
