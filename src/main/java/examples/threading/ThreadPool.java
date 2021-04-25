@@ -36,6 +36,8 @@ public class ThreadPool {
     }
 
     public void shutdown() {
+        //Set running to false to handle case when an alien task submitted swallows the interrupt.
+        running = false;
         grp.interrupt();
     }
 
@@ -55,8 +57,7 @@ public class ThreadPool {
                 try {
                     take().run();
                 } catch (InterruptedException e) {
-                    //Stop all workers when one of the task gets interrupted / cancelled.
-                    running = false;
+                    return;
                 }
             }
         }
