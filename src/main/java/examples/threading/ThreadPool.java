@@ -36,7 +36,7 @@ public class ThreadPool {
     }
 
     public void shutdown() {
-        grp.stop();
+        grp.interrupt();
     }
 
     public Integer getRunQueueLength() {
