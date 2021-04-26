@@ -31,20 +31,20 @@ public class Streams {
 
         //Primitive to collections.
         int[] data = {1,2,2,3,4,4,5};
-        //to List
+        //to default List
         List<Integer> arrList1 = IntStream.of(data).boxed().collect(Collectors.toList());
         arrList1.add(100);
         System.out.println("Array List = "+arrList1);
         //to LinkedList
-        List<Integer> linkedList = IntStream.of(data).boxed().collect(Collectors.toCollection(LinkedList::new));
+        List<Integer> linkedList = IntStream.of(data).boxed().collect(Collectors.toCollection(() -> new LinkedList<>()));
         linkedList.add(111);
         System.out.println("Linked List = "+linkedList);
-        //to Set
+        //to default Set
         Set<Integer> set = IntStream.of(data).boxed().collect(Collectors.toSet());
         set.add(222);
         System.out.println("Set = "+set);
         //to TreeSet
-        SortedSet<Integer> sortedSet = IntStream.of(data).boxed().collect(Collectors.toCollection(TreeSet::new));
+        SortedSet<Integer> sortedSet = IntStream.of(data).boxed().collect(Collectors.toCollection(() ->  new TreeSet<>()));
         set.add(222);
         System.out.println("Sorted Set = "+sortedSet);
         //to Map
