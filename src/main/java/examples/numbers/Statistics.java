@@ -23,7 +23,6 @@ class Statistics {
     }
 
     public double[] sampleStats(int[] count) {
-        List<Elem> data = new ArrayList<>();
 
         int min_elem = -1;
         int max_elem = -1;
@@ -48,8 +47,6 @@ class Statistics {
                     mode = i;
                     max_freq = freq;
                 }
-
-                data.add(new Elem(i, freq));
             }
         }
 
@@ -58,11 +55,11 @@ class Statistics {
         double median = 0.0;
         int k = num_values / 2;
         if ( num_values % 2 == 0 ) {
-            Integer k1 = helperGetKthElem(data, k - 1);
-            Integer k2 = helperGetKthElem(data, k);
+            Integer k1 = helperGetKthElem(count, k - 1);
+            Integer k2 = helperGetKthElem(count, k);
             median = (float) ( k1 + k2 ) / 2 ;
         } else {
-            median = helperGetKthElem(data, k);
+            median = helperGetKthElem(count, k);
         }
 
         double[] stats = new double[] { min_elem, max_elem, mean, median, mode } ;
@@ -70,31 +67,21 @@ class Statistics {
         return stats;
     }
 
-    public static Integer helperGetKthElem(List<Elem> data, Integer k ) {
+    public static Integer helperGetKthElem(int[] count, Integer k ) {
         Integer i = 0;
-        Elem prev = null;
-        for( Elem e : data ) {
-            prev = e;
-            if ( k + 1 <= ( i + e.freq ) ) {
+        Integer prev = null;
+        for (Integer j = 0; j < count.length; j++) {
+            if ( count[j] != 0 ) prev = j;
+            if (k + 1 <= (i + count[j])) {
                 break;
             } else {
-                i += e.freq;
+                i += count[j];
             }
         }
-        if ( prev != null )
-            return prev.idx;
+        if (prev != null)
+            return prev;
         else
             return -1;
-    }
-
-    private class Elem {
-        Integer idx;
-        Integer freq;
-
-        public Elem(Integer idx, Integer freq) {
-            this.idx = idx;
-            this.freq = freq;
-        }
     }
 }
 
