@@ -1,9 +1,9 @@
-package examples.threading;
+package language.threading;
 
 import java.util.stream.*;
 import java.util.concurrent.locks.*;
 
-import examples.comparator.GenericPoint;
+import language.comparator.GenericPoint;
 
 public class ReadWriteLocks {
 

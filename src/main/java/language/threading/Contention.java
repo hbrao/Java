@@ -1,4 +1,4 @@
-package examples.threading;
+package language.threading;
 
 import java.util.*;
 import java.util.concurrent.*;

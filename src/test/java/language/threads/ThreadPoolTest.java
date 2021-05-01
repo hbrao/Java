@@ -1,6 +1,6 @@
-package examples.threads;
+package language.threads;
 
-import examples.threading.ThreadPool;
+import language.threading.ThreadPool;
 import org.junit.*;
 
 import java.util.*;

@@ -1,4 +1,4 @@
-package examples.comparator;
+package language.comparator;
 
 import java.util.*;
 

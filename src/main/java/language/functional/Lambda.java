@@ -1,4 +1,4 @@
-package examples.functional;
+package language.functional;
 
 public class Lambda {
     public static void main(String[] args) {

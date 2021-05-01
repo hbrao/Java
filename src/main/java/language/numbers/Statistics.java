@@ -1,4 +1,4 @@
-package examples.numbers;
+package language.numbers;
 
 import java.util.*;
 
