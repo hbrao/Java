@@ -1,4 +1,4 @@
-package problmes.project02;
+package problems.project02;
 
 import java.io.File;
 import java.io.FileNotFoundException;
