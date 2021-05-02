@@ -14,7 +14,7 @@ public class ThreadPool {
         Integer groupId ;
         synchronized (ThreadPool.class) {
             groupId = nextGroupId.incrementAndGet();
-        } 
+        }
         grp = new ThreadGroup("Group "+ groupId);
         IntStream.range(1, poolSize + 1).forEach( workerId -> {
             new Worker(grp, groupId + "-" + workerId).start();
