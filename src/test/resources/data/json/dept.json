@@ -1,0 +1,12 @@
+{
+  "departments": [
+    {
+      "Name": "Support",
+      "Description": "IT support department"
+    },
+    {
+      "Name": "Applications",
+      "Description": "Application Development"
+    }
+  ]
+}
