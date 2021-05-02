@@ -1,6 +1,7 @@
 package language.threading;
 
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.stream.*;
 import java.util.concurrent.locks.*;
 
@@ -13,7 +14,7 @@ public class Basics {
         sol.startThread();
 
         //Scheduled task
-        sol.scheduledThread(1000L, 2 * 1000L);
+        sol.scheduledThread(TimeUnit.SECONDS.toMillis(1), TimeUnit.SECONDS.toMillis(2));
 
         //ThreadGroup park / un park.
         ThreadGroup grp = sol.startThreadGroup();
