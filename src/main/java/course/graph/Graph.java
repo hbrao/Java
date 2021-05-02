@@ -1,4 +1,4 @@
-package algorithms.graph;
+package course.graph;
 import java.util.List;
 
 /**

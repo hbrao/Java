@@ -1,4 +1,4 @@
-package algorithms.linear;
+package course.linear;
 
 import java.lang.reflect.Array;
 

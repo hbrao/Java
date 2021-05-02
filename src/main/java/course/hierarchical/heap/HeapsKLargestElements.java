@@ -1,4 +1,4 @@
-package algorithms.hierarchical.heap;
+package course.hierarchical.heap;
 
 /**
  * Created by jananiravi on 12/22/15.

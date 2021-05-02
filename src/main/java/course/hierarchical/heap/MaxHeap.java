@@ -1,4 +1,4 @@
-package algorithms.hierarchical.heap;
+package course.hierarchical.heap;
 
 public class MaxHeap<T extends Comparable> extends Heap<T> {
 

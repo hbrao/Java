@@ -1,4 +1,4 @@
-package algorithms.hierarchical.heap;
+package course.hierarchical.heap;
 
 import java.lang.reflect.Array;
 

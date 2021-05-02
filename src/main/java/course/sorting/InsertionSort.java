@@ -1,4 +1,4 @@
-package algorithms.sorting;
+package course.sorting;
 
 /**
  * Created by jananiravi on 11/14/15.

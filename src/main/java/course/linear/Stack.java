@@ -1,4 +1,4 @@
-package algorithms.linear;
+package course.linear;
 
 public class Stack<T> {
 
