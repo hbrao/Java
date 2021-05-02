@@ -5,7 +5,7 @@ import java.time.temporal.*;
 
 public class AgeCalculator {
     public static void main(String[] args)  throws Exception {
-        String  date = "1983-08-16", time = "14:45:00.000000000", zone = "Asia/Calcutta";
+        String  date = "2018-12-26", time = "14:45:00.000000000", zone = "Asia/Calcutta";
 
         System.out.printf("%s: Started execution...... \n", Instant.now(Clock.systemUTC()));
 
@@ -38,10 +38,11 @@ public class AgeCalculator {
 
             //Info about next birthday
             ZonedDateTime nextBirthday = dob.with(new Adjusters.NextBirthDay());
-            System.out.printf("%s: Your next birthday %s is on %s \n"
+            System.out.printf("%s: Your next birthday %s is on %s coming in %s days \n"
                     , Instant.now(Clock.systemUTC())
                     , nextBirthday
-                    , nextBirthday.getDayOfWeek());
+                    , nextBirthday.getDayOfWeek()
+                    , Duration.between(now, nextBirthday).toDays());
             System.out.printf("%s: Next holiday to celebrate your birthday %s \n"
                     , Instant.now(Clock.systemUTC())
                     , nextBirthday.with(new Adjusters.NextSunday()));
