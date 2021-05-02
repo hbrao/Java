@@ -20,7 +20,8 @@ public class Basics {
               .map( zoneId -> ZonedDateTime.parse( date + "T" + time + sign + hourOffset + ":" + minuteOffset + "[" +zoneId + "]") );
 
         ZonedDateTime dob = zdt.get();
-        ZonedDateTime now = ZonedDateTime.now();
+        ZonedDateTime now = ZonedDateTime.ofInstant(Instant.now(Clock.systemUTC()), dob.getZone());
+        System.out.println("It is now " + now);
 
         if ( dob.isBefore(now) ) {
             Period p_age = Period.between(dob.toLocalDate(), now.toLocalDate());
