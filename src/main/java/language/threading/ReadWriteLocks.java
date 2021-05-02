@@ -1,6 +1,7 @@
 package language.threading;
 
 import java.util.stream.*;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
 
 import language.comparator.GenericPoint;
@@ -9,7 +10,7 @@ public class ReadWriteLocks {
 
     public static void main(String[] args) {
         Point p = new Point();
-        IntStream.range(1,100)
+        IntStream.range(1,100_000)
                  .parallel()
                  .mapToObj( i -> new GenericPoint<Integer,Integer>(i, i))
                  .forEach( gp -> {
@@ -39,8 +40,10 @@ public class ReadWriteLocks {
         public Double distanceFromOrigin() {
             Long stamp = sl.tryOptimisticRead(); //Optimistic read
             Integer lX = this.x, lY = this.y;
+            try { Thread.sleep(TimeUnit.SECONDS.toMillis(1)) ; } catch (InterruptedException ex) {};
             if ( ! sl.validate(stamp) ) {
                 stamp = sl.readLock(); // Pessimistic read
+                System.out.println("Acquiring read lock.....");
                 try {
                     lX = this.x ;
                     lY = this.y ;
