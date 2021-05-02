@@ -1,4 +1,4 @@
-package language.numbers;
+package language.math;
 
 import java.util.*;
 
