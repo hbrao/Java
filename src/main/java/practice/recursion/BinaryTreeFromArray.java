@@ -1,13 +1,11 @@
 package practice.recursion;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.stream.*;
+
+import org.junit.*;
+import org.junit.runner.*;
+import org.junit.runners.*;
 
 @RunWith(Parameterized.class)
 public class BinaryTreeFromArray {

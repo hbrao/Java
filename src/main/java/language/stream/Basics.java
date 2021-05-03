@@ -3,7 +3,7 @@ package language.stream;
 import java.util.*;
 import java.util.stream.*;
 
-public class Streams {
+public class Basics {
     public static void main(String[] args) {
         //0...n-1
         int[] arr = IntStream.range(0, 11).toArray();

@@ -1,10 +1,7 @@
 package practice.recursion;
 
 import org.junit.*;
-
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class InOrderSuccessor {
     public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
