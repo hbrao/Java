@@ -122,6 +122,7 @@ public final class Employee implements Serializable , Cloneable {
     public static<T> T cloneThroughJson(T obj ) {
         Gson gson = new Gson();
         String json = gson.toJson(obj);
+        System.out.println(json);
         return (T) gson.fromJson(json, obj.getClass());
     }
 }
