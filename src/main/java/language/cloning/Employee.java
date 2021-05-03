@@ -91,16 +91,12 @@ public final class Employee implements Serializable , Cloneable {
         //Deep clone via serialization.
         Employee emp1Clone2 = cloneThroughSerialization(emp1);
 
-        //Deep clone via Json
-        Employee emp1Clone3 = cloneThroughJson(emp1);
-
         emp1.firstName = "Manasaa";
         emp1.projects.add(new Project("Transfers", "Manual testing"));
 
         System.out.println("Employee obj:" + emp1);
         System.out.println("Employee obj clone:" + emp1Clone);
         System.out.println("Employee obj deep clone via serialization:" + emp1Clone2);
-        System.out.println("Employee obj deep clone via json:" + emp1Clone3);
     }
 
     public  static <T> T cloneThroughSerialization(T obj) {
@@ -117,12 +113,5 @@ public final class Employee implements Serializable , Cloneable {
             ex.printStackTrace();
             return null;
         }
-    }
-
-    public static<T> T cloneThroughJson(T obj ) {
-        Gson gson = new Gson();
-        String json = gson.toJson(obj);
-        System.out.println(json);
-        return (T) gson.fromJson(json, obj.getClass());
     }
 }
