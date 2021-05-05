@@ -25,6 +25,9 @@ public class Indexed {
         Collections.reverse(data);
         //Shuffle
         Collections.shuffle(data);
+        //To Array
+        Integer[] arr = data.toArray(new Integer[0]);
+        System.out.println(arr);
         //Print
         System.out.println(data);
     }

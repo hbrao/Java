@@ -54,7 +54,7 @@ public class Basics {
         System.out.println("Map 4 Group repeated values into Set= "+hm4);
 
         Map<Integer,Set<Integer>> hm5 = IntStream.of(data).boxed().collect(Collectors.groupingBy(
-                e -> e.intValue(), // Define classifier (Key)
+                Integer::intValue, // Define classifier (Key) //TODO Why can't I use e -> e.intValue()
                 () ->  new TreeMap<> (Comparator.reverseOrder()), //Change output Structure
                 Collectors.toSet() //Specify collector (Values)
         ));
