@@ -21,6 +21,8 @@ public class Indexed {
         data.removeIf( val -> val < 0 );
         //Set
         data.set(0 , 0);
+        //Replace all
+        data.replaceAll( val -> val  == 0 ? 2 : val );
         //Reverse
         Collections.reverse(data);
         //Shuffle
