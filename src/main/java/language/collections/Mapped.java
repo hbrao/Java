@@ -42,13 +42,28 @@ public class Mapped {
         servers.put("mongo","mongodb://mongodb2.example.com:27017" ); //Collision
 
         servers.forEach( ( s_key, s_value ) -> {
-            conn.merge( s_key, s_value, ( old_value , new_value ) -> {
-                return new_value; // Override with new value
-            });
-        });
-
-        //TODO Sort by values
-
+            conn.merge( s_key
+                      , s_value
+                      , (old_value , new_value) -> { //Merge function
+                          return new_value; // Override with new value
+                        }
+                      );
+            }
+        );
         System.out.println(conn);
+
+        //Sort by values
+        HashMap<String,String> conn_value_sorted = conn.entrySet()
+            .stream()
+            .sorted( Map.Entry.comparingByValue() )
+            .collect(Collectors.toMap(
+                          e -> e.getKey() // Key mapper
+                        , e -> e.getValue() // Value mapper
+                        , (old_val, new_val) -> { return new_val; } // Merge function
+                        , () -> new LinkedHashMap<>() //Define map structure
+                    )
+            );
+
+        System.out.println(conn_value_sorted);
     }
 }
