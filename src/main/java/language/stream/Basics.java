@@ -18,7 +18,7 @@ public class Basics {
         System.out.println(arrList.stream().map( e -> e.toString()).collect(Collectors.joining(",")));
 
         //Statistics - average, sum etc.
-        IntSummaryStatistics stats =  arrList.stream().collect(Collectors.summarizingInt(Integer::intValue));
+        IntSummaryStatistics stats =  arrList.stream().collect(Collectors.summarizingInt( e -> e.intValue()));
         System.out.println(stats.getSum() + ";" + stats.getAverage());
 
         //Primitive to collections.
@@ -44,17 +44,17 @@ public class Basics {
         System.out.println("Map 1 Distinct keys= "+hm1);
 
         //Collectors.groupingBy - Default output structure = Map; Collector = List
-        Map<Integer, List<Integer>> hm2= IntStream.of(data).boxed().collect(Collectors.groupingBy(Integer::intValue));
+        Map<Integer, List<Integer>> hm2= IntStream.of(data).boxed().collect(Collectors.groupingBy(e -> e.intValue()));
         System.out.println("Map 2 Group repeated values into List= "+hm2);
 
         Map<Integer, Set<String>> hm4= IntStream.of(data).boxed().collect(Collectors.groupingBy(
-                Integer::intValue, //Define classifier (Key)
+                e -> e.intValue(), //Define classifier (Key)
                 Collectors.mapping( (i) -> "'" +i.toString() + "'", Collectors.toSet()) //Specify collector (Values).
         ));
         System.out.println("Map 4 Group repeated values into Set= "+hm4);
 
         Map<Integer,Set<Integer>> hm5 = IntStream.of(data).boxed().collect(Collectors.groupingBy(
-                Integer::intValue, // Define classifier (Key)
+                e -> e.intValue(), // Define classifier (Key)
                 () ->  new TreeMap<> (Comparator.reverseOrder()), //Change output Structure
                 Collectors.toSet() //Specify collector (Values)
         ));
@@ -62,7 +62,7 @@ public class Basics {
         hm5.entrySet().forEach( (Map.Entry<Integer,Set<Integer>> e) -> System.out.println(e.getKey() + " : " + e.getValue()) );
 
         //Collectors.counting()
-        Map<Integer, Long> hm3= IntStream.of(data).boxed().collect(Collectors.groupingBy(Integer::intValue,Collectors.counting()));
+        Map<Integer, Long> hm3= IntStream.of(data).boxed().collect(Collectors.groupingBy( e -> e.intValue(), Collectors.counting()));
         System.out.println("Map 3 Count occurrences of each element= "+hm3);
 
     }
