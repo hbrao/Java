@@ -27,7 +27,7 @@ public class Indexed {
         Collections.shuffle(data);
         //To Array
         Integer[] arr = data.toArray(new Integer[0]);
-        System.out.println(arr);
+        System.out.println(Arrays.toString(arr));
         //Print
         System.out.println(data);
     }
