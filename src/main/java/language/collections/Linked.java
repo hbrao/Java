@@ -4,17 +4,25 @@ import java.util.*;
 
 public class Linked {
     public static void main(String[] args) {
-        Deque<Integer> data = new LinkedList<>();
-        //Stack
-        data.addFirst(2); //Push
-        data.addFirst(1);
-        data.getFirst();     //Peek
-        data.removeFirst();  //Pop
+        //LinkedList | ConcurrentLinkedDeque
 
-        //Queue
-        data.addLast(1);  //Enqueue
-        data.addLast(0);
-        data.removeFirst();  //Dequeue
+        Deque<Integer> data = new LinkedList<>();
+
+        //May throw NoSuchElementException when extracting element out.
+
+        //Deque
+        data.addLast(1);
+        data.addFirst(0);
+        data.peekFirst();
+        data.peekLast();
+        data.removeLast();
+        data.removeFirst();
+
+        //Stack
+        data.push(2); // addFirst
+        data.push(1);
+        data.peek(); // peekFirst
+        data.pop(); // removeFirst
 
         System.out.println(data);
     }

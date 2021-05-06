@@ -118,7 +118,7 @@ public class ThreadPoolTest {
         time = System.currentTimeMillis() - time;
         pool.shutdown();
         if (pool.getRunQueueLength() != 0) {
-            throw new AssertionError("Queue was not empty: "
+            throw new AssertionError("Prioritized was not empty: "
                 + pool.getRunQueueLength());
         }
         assertTrue("Total time exceeded limits", time < 2400);

@@ -4,12 +4,16 @@ import  java.util.*;
 
 public class Indexed {
     public static void main(String[] args) {
+        // ArrayList | Vector
+
         Integer n = 9;
         //Define
         List<Integer> data = new ArrayList<>(Collections.nCopies(n, 0));
         //Fill
         Collections.fill(data, 1);
-        //Sub list
+        //Get
+        data.get(0);
+        //Get Sub list
         List<Integer> subList = data.subList(0, n / 2);
         //Sort
         data.sort(Comparator.reverseOrder());

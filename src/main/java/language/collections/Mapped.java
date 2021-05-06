@@ -5,8 +5,9 @@ import java.util.stream.*;
 
 public class Mapped {
     public static void main(String[] args) {
+        //HashMap | ConcurrentHashMap, LinkedHashMap, TreeMap | ConcurrentSkipListMap
         Map<String, String> conn = new TreeMap<>( (key1, key2) -> {
-            return key1.compareTo(key2); // Default sorting.
+            return key2.compareTo(key1); // Sort in reverse order of keys.
         });
 
         //Put

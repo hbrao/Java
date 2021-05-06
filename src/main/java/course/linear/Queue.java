@@ -17,21 +17,21 @@ public class Queue<T> {
         MAX_SIZE = 4;
         Queue<Integer> queue = new Queue<>(Integer.class);
 
-        System.out.println("Queue full?: " + queue.isFull());
-        System.out.println("Queue empty?: " + queue.isEmpty());
+        System.out.println("Prioritized full?: " + queue.isFull());
+        System.out.println("Prioritized empty?: " + queue.isEmpty());
 
         queue.enqueue(1);
         queue.enqueue(2);
         queue.enqueue(3);
 
-        System.out.println("Queue full?: " + queue.isFull());
-        System.out.println("Queue empty?: " + queue.isEmpty());
+        System.out.println("Prioritized full?: " + queue.isFull());
+        System.out.println("Prioritized empty?: " + queue.isEmpty());
 
         queue.enqueue(4);
-        System.out.println("Queue full?: " + queue.isFull());
-        System.out.println("Queue empty?: " + queue.isEmpty());
+        System.out.println("Prioritized full?: " + queue.isFull());
+        System.out.println("Prioritized empty?: " + queue.isEmpty());
 
-        System.out.println("Queue peek: " + queue.peek());
+        System.out.println("Prioritized peek: " + queue.peek());
 
         int data = queue.dequeue();
         System.out.println("Dequeued element: " + data);
@@ -47,7 +47,7 @@ public class Queue<T> {
             queue.enqueue(5);
             queue.enqueue(6);
         } catch (QueueOverflowException soe) {
-            System.out.println("Queue is full! No room available.");
+            System.out.println("Prioritized is full! No room available.");
         }
 
         try {
@@ -58,7 +58,7 @@ public class Queue<T> {
             queue.dequeue();
             queue.dequeue();
         } catch (QueueUnderflowException sue) {
-            System.out.println("Queue is empty! No elements available.");
+            System.out.println("Prioritized is empty! No elements available.");
         }
 
     }
