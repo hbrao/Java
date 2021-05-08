@@ -10,25 +10,26 @@ public class Mapped {
             return key2.compareTo(key1); // Sort in reverse order of keys.
         });
 
+        //NOTE: put / replace /  compute  methods returns the reference to value
         //Put
         conn.put("mongo", "mongodb://mongodb0.example.com:27017");
         conn.putIfAbsent("mongo", "mongodb://mongodb0.example.com:27017" );
         conn.put("postgresql", "127.0.0.1");
 
         //Replace
-        conn.replace("mongo","mongodb://mongodb1.example.com:27017" );
+        String oldValue = conn.replace("mongo","mongodb://mongodb1.example.com:27017" );
 
         //Compute
-        conn.computeIfAbsent("mysql", (key) -> {  //Idempotent
+        String computedValue1 = conn.computeIfAbsent("mysql", (key) -> {  //Idempotent
             return "jdbc:"+key+"://"+key+".db.server:3306/my_database";
         });
 
-        conn.computeIfPresent("postgresql", (key, value) -> {  //Not idempotent
+        String computedValue2 = conn.computeIfPresent("postgresql", (key, value) -> {  //Not idempotent
             return "jdbc:"+key+"://"+value+":9000/database";
         });
 
         //Get
-        System.out.println(conn.getOrDefault("oracle", "jdbc:oracle:thin:@db.server:1521:orcl"));
+        String defaultValue = conn.getOrDefault("oracle", "jdbc:oracle:thin:@db.server:1521:orcl");
 
         //Remove
         conn.remove("mongo", "mongodb://mongodb0.example.com:27017"); // Only when both key , value matches
@@ -36,6 +37,7 @@ public class Mapped {
         System.out.println(conn);
 
         //Merge
+        //NOTE: If merge function returns null key gets deleted.
         Map<String, String> servers = new HashMap<>();
         servers.put("frontend", "https://a12jnjj.aws.com");
         servers.put("backend", "https://awe9888.aws.com");
