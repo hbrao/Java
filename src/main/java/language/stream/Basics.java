@@ -17,8 +17,11 @@ public class Basics {
         List<Integer> arrList = IntStream.range(10, 21).boxed().collect(Collectors.toList());
         System.out.println(arrList.stream().map( e -> e.toString()).collect(Collectors.joining(",")));
 
+        //Summing Int
+        System.out.println(arrList.stream().collect(Collectors.summingInt( e -> e )));
+
         //Statistics - average, sum etc.
-        IntSummaryStatistics stats =  arrList.stream().collect(Collectors.summarizingInt( e -> e.intValue()));
+        IntSummaryStatistics stats =  arrList.stream().collect(Collectors.summarizingInt( e -> e ));
         System.out.println(stats.getSum() + ";" + stats.getAverage());
 
         //Primitive to collections.
