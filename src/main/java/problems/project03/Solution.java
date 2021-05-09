@@ -5,54 +5,36 @@ import java.util.*;
 class Solution {
 
     public static void main(String[] args) {
-        ArrayList<String> strings = new ArrayList<String>();
-        strings.add("Hello, World!");
-        strings.add("Welcome to CoderPad.");
-        strings.add("This pad is running Java " + Runtime.version().feature());
 
     }
 
-    public static Long findNextAvailableTime(List<User > users, Integer meetingDuration) {
+    public static Long findNextAvailableTime(List<User> users, Integer meetingDuration) {
         Long nextAvailableTime = System.currentTimeMillis();
 
-        while ( true ) {
-            Boolean available = true;
-            for( User u : users ) {
-                available = available && u.isAvailable(nextAvailableTime , meetingDuration);
-                if ( ! available ) break;
+        SortedMap<Long,Integer> conflicts = null;
+        Integer i =0, availableUsers = 0;
+        while ( availableUsers < users.size() ) {
+            if ( i == users.size() ) i = 0;
+            User u = users.get(i);
+            conflicts = u.isAvailable(nextAvailableTime, meetingDuration);
+            if ( ! conflicts.isEmpty() ) {
+                nextAvailableTime += conflicts.firstKey() + conflicts.get(conflicts.firstKey());
+                availableUsers = 0;
+            } else {
+                i += 1;
+                availableUsers += 1;
             }
-            if ( available ) return nextAvailableTime;
-            else nextAvailableTime += 1000 * 60;
         }
+        return nextAvailableTime;
     }
 
 
     private static class User {
-        private SortedSet<Meeting> meetings = new TreeSet<>();
+        private SortedMap<Long,Integer> meetings = new TreeMap<>();
 
-        public Boolean isAvailable(Long meetingTime, Integer duration ) {
-
-            for( Meeting m : meetings ) {
-                Long finishTime = meetingTime + duration;
-
-                //Check if there is any overlap.
-                if ( m.startTime >= meetingTime || finishTime <= ( m.startTime + m.duration ) ) {
-                    return false;
-                }
-
-                //Exit
-                if ( m.startTime > finishTime  ) {
-                    return true;
-                }
-            }
-
-            return true;
+        public SortedMap<Long,Integer> isAvailable(Long meetingTime, Integer duration ) {
+            return meetings.subMap(meetingTime, meetingTime + duration);
         }
-    }
-
-    private static class Meeting {
-        public Long startTime;
-        public Integer duration;
     }
 }
 
