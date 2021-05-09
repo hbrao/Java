@@ -48,7 +48,7 @@ public class Mapped {
             conn.merge( s_key
                       , s_value
                       , (old_value , new_value) -> { //Merge function
-                          return new_value; // Override with new value
+                          return new_value; // Override with new value NOTE: If we return null entry gets deleted.
                         }
                       );
             }
