@@ -41,7 +41,7 @@ public class Basics {
         //to TreeSet
         SortedSet<Integer> sortedSet = IntStream.of(data).boxed().collect(Collectors.toCollection(() ->  new TreeSet<>()));
         set.add(222);
-        System.out.println("Sorted Set = "+sortedSet);
+        System.out.println("Navigable Set = "+sortedSet);
         //to Map
         Map<Integer,String> hm1 = IntStream.of(data).boxed().distinct().collect(Collectors.toMap((i) -> i.intValue(), (i) -> i.toString()));
         System.out.println("Map 1 Distinct keys= "+hm1);

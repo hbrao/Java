@@ -45,7 +45,7 @@ public class GenericComparator<T extends Comparable> {
         obj.data.forEach((e) -> System.out.println(e));
 
         GenericComparator<Integer> obj2 = new GenericComparator<>(arrayToList(new Integer[] {11, 2, 33}));
-        System.out.println("Sorted integers");
+        System.out.println("Navigable integers");
         obj2.data.sort(Comparator.naturalOrder());
         obj2.data.forEach( e-> System.out.println(e));
     }
