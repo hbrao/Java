@@ -21,7 +21,9 @@ public class Strings {
         System.out.println(s.substring(1));
 
         //Convert to list of Characters
-        List<Character> chrList = s.chars().mapToObj( val -> (char) val).collect(Collectors.toList());
+        List<Character> chrList = s.chars()
+                                   .mapToObj( val -> (char) val)
+                                   .collect(Collectors.toList());
         List<Character> charSubList  = chrList.subList(6,13);
         System.out.println(charSubList);
 
