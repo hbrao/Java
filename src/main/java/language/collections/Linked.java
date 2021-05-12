@@ -24,6 +24,20 @@ public class Linked {
         data.peek(); // peekFirst
         data.pop(); // removeFirst
 
+        //LinkedList
+        data.add(10);
+        data.add(12);
+        data.add(20);
+        data.remove(12);
+
         System.out.println(data);
+        Iterator<Integer> iter = data.descendingIterator();
+        StringBuilder sb = new StringBuilder("[");
+        while(iter.hasNext()) {
+            sb.append(iter.next() + ", ");
+        }
+        sb.setLength(sb.length() - 2);
+        System.out.println( sb + "]");
+
     }
 }
