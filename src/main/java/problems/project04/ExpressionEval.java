@@ -6,8 +6,8 @@ public class ExpressionEval {
     public static void main(String[] args) {
         Deque<BigDecimal> stk = new LinkedList();
 
-        String expression = "12+3+4/";
-        for(Character c : expression.toCharArray()) {
+        String postfixExpr = "12+3+4/";  // ((1 + 2) + 3 ) / 4
+        for(Character c : postfixExpr.toCharArray()) {
             if ( Character.isDigit(c) ) {
                 stk.push(new BigDecimal(Double.parseDouble(String.valueOf(c))));
             } else {

@@ -14,6 +14,9 @@ public class Strings {
         //Get first index of a given character if present. Otherwise return -1
         System.out.println(s.indexOf('P') + "; " + s.indexOf("Z"));
 
+        //Contains
+        System.out.println(s.contains(String.valueOf('a')) + " ; " + ( s.indexOf('a') != -1 ) );
+
         //Get sub string [s, e]
         System.out.println(s.substring(6,13));
 
@@ -33,14 +36,15 @@ public class Strings {
 
         //Remove vowels.
         String vowels = "aAeEiIoOuU";
-        StringBuilder sb1 = new StringBuilder(s);
+        StringBuilder sb1 = new StringBuilder();
+        s.chars().forEach( val -> sb1.append(val) );
         for(int i = 0 ; i < sb1.length() ; i ++) {
             if ( vowels.indexOf(sb1.charAt(i)) != -1 ) {
                 sb1.deleteCharAt(i);
                 i -= 1;
             }
         }
-        System.out.println(sb1.toString());
+        System.out.println(sb1);
 
         //Reverse string.
         System.out.println(new StringBuilder(s).reverse());
@@ -65,5 +69,17 @@ public class Strings {
         Matcher m = Pattern.compile("[a-zA-Z|0-9]+").matcher(text);
         while ( m.find() ) System.out.print(m.group() + ", ");
         System.out.println();
+
+        //Get character frequencies.
+        String pattern = "aabc";
+        Map<Character,Integer> charFreq = pattern.chars()
+                                                    .mapToObj(v -> (char) v)
+                                                    .collect(Collectors.toMap(
+                                                                k -> k, //Key mapper
+                                                                k-> 1, //Value mapper
+                                                                ( v1 , v2 ) -> v1 + v2 //Merge function
+                                                            )
+                                                    );
+        System.out.println(charFreq);
     }
 }

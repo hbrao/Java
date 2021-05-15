@@ -5,19 +5,24 @@ import java.util.stream.*;
 
 public class Mapped {
     public static void main(String[] args) {
-        //HashMap | ConcurrentHashMap, LinkedHashMap, TreeMap | ConcurrentSkipListMap
-        Map<String, String> conn = new TreeMap<>( (key1, key2) -> {
-            return key2.compareTo(key1); // Sort in reverse order of keys.
-        });
+        //HashMap | ConcurrentHashMap
+        Map<String, String> conn = new HashMap<>();
 
         //NOTE: put / replace /  compute  methods returns the reference to value
         //Put
         conn.put("mongo", "mongodb://mongodb0.example.com:27017");
-        conn.putIfAbsent("mongo", "mongodb://mongodb0.example.com:27017" );
         conn.put("postgresql", "127.0.0.1");
 
-        //Replace
+        //Put if key is NOT present.
+        String existingValue = conn.putIfAbsent("mongo", "mongodb://mongodb3.example.com:27017" );
+        System.out.println(existingValue);
+
+        //Contains
+        System.out.println(conn.containsKey("mongo"));
+
+        //Replace NOTE: Only when key is present.
         String oldValue = conn.replace("mongo","mongodb://mongodb1.example.com:27017" );
+        System.out.println(oldValue);
 
         //Compute
         String computedValue1 = conn.computeIfAbsent("mysql", (key) -> {  //Idempotent
@@ -67,6 +72,10 @@ public class Mapped {
                     )
             );
 
+        System.out.println(conn_value_sorted);
+
+        //Replace all values to empty string
+        conn_value_sorted.replaceAll( (k, v) -> "empty" );
         System.out.println(conn_value_sorted);
     }
 }

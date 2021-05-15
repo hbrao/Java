@@ -18,7 +18,7 @@ public class Basics {
         System.out.println(Arrays.toString(arr2));
 
         //
-        //Primitive to collections
+        // Primitive to collections
         //
 
         int[] data = {1,2,2,3,4,4,5};
@@ -49,7 +49,7 @@ public class Basics {
         System.out.println("Map 1 Distinct keys= "+hm1);
 
         //
-        //Collectors.groupingBy (Default output structure = Map; Collector = List)
+        // Collectors.groupingBy (Default output structure = Map; Collector = List)
         //
 
         Map<Integer, List<Integer>> hm2= IntStream.of(data).boxed().collect(Collectors.groupingBy(e -> e.intValue()));
