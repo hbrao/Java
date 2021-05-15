@@ -18,22 +18,24 @@ public class FindPattern {
                                                  .collect(Collectors.toMap(c -> c, c -> 1, (v1, v2) -> v1 + v2));
 
         for(Integer windowEnd = 0; windowEnd < str.length() ; windowEnd ++) {
-            Character ch = str.charAt(windowEnd);
-            if ( charFreq.containsKey(ch) ) {
-                charFreq.merge(ch, -1, (v1, v2) -> v1 + v2);
-                counter += 1;
+            Character rightChar = str.charAt(windowEnd);
+            if ( charFreq.containsKey(rightChar) ) {
+                charFreq.merge(rightChar, -1, (v1, v2) -> v1 + v2);
+                if ( charFreq.get(rightChar) == 0 )
+                    counter += 1;
             }
-            if ( counter == pattern.length() )
+            if ( counter == charFreq.size() )
                 return true;
             //Check if window size became larger than pattern.length()
             if ( windowEnd >= pattern.length() - 1 ) {
                 //Shrink the window
                 Character leftChar = str.charAt(windowStart);
-                if ( charFreq.containsKey(leftChar) ) {
-                    charFreq.merge(leftChar, 1, (v1, v2) -> v1 + v2);
-                    counter -= 1;
-                }
                 windowStart += 1;
+                if ( charFreq.containsKey(leftChar) ) {
+                    if ( charFreq.get(leftChar) == 0 )
+                        counter -= 1;
+                    charFreq.merge(leftChar, 1, (v1, v2) -> v1 + v2);
+                }
             }
         }
 
