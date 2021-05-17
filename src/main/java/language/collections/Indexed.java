@@ -4,12 +4,23 @@ import  java.util.*;
 
 public class Indexed {
     public static void main(String[] args) {
+        // Arrays
+        int[] arr = new int[] {2, -1, 3, -2, 1, 9, 11, 23, 6, 2};
+        Arrays.sort(arr);
+        Collections.reverse(Arrays.asList(arr)); //No reverse API in Arrays
+        System.out.println(Arrays.toString(arr));
+        //Fill
+        Arrays.fill(arr, 0);
+        System.out.println(Arrays.toString(arr));
+
         // ArrayList | Vector
+        //Immutable list creation (Only up to 10 elements)
+        List<Integer> immutableList = List.of(1, 2, 3);
+        System.out.println(immutableList);
 
         Integer n = 9;
-        //Define
+        //Create list of size N and fill with value
         List<Integer> data = new ArrayList<>(Collections.nCopies(n, 0));
-        //Fill
         Collections.fill(data, 1);
         //Get
         data.get(0);
@@ -32,9 +43,8 @@ public class Indexed {
         //Shuffle
         Collections.shuffle(data);
         //To Array
-        Integer[] arr = data.toArray(new Integer[0]);
-        System.out.println(Arrays.toString(arr));
-        //Print
+        Integer[] arr2 = data.toArray(new Integer[0]);
+        System.out.println(Arrays.toString(arr2));
         System.out.println(data);
     }
 }
