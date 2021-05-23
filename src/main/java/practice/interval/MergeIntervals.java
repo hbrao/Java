@@ -1,4 +1,4 @@
-package language.comparator;
+package practice.interval;
 
 import java.util.*;
 
@@ -32,6 +32,32 @@ public class MergeIntervals {
             }
         }
         mergedIntervals.add(prev);
+        return mergedIntervals;
+    }
+
+    public static List<Interval> insert(List<Interval> intervals, Interval newInterval) {
+        List<Interval> mergedIntervals = new ArrayList<>();
+        Integer ms = newInterval.start;
+        Integer me = newInterval.end;
+        Boolean overlap = false;
+        for(Interval i : intervals) {
+            if ( i.start < ms && i.end > ms || i.start < me && i.end > me || i.start > ms && i.end < me ) {
+                ms = Math.min(i.start, ms);
+                me = Math.max(i.end, me);
+                overlap = true;
+            } else {
+                if ( overlap ) {
+                    mergedIntervals.add(new Interval(ms, me));
+                    overlap = false;
+                }
+                mergedIntervals.add(i);
+            }
+        }
+
+        if ( overlap ) {
+            mergedIntervals.add(new Interval(ms, me));
+            overlap = false;
+        }
         return mergedIntervals;
     }
 
