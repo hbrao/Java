@@ -2,7 +2,7 @@ package practice.intervals;
 
 import java.util.*;
 
-public class MergeIntervals {
+public class Basics {
     public static List<Interval> merge(List<Interval> intervals) {
         //Order intervals by start and then end time.
         //Method Old
@@ -67,7 +67,7 @@ public class MergeIntervals {
         input.add(new Interval(2, 5));
         input.add(new Interval(7, 9));
         System.out.print("Merged intervals: ");
-        for (Interval interval : MergeIntervals.merge(input))
+        for (Interval interval : Basics.merge(input))
             System.out.print("[" + interval.start + "," + interval.end + "] ");
         System.out.println();
 
@@ -76,7 +76,7 @@ public class MergeIntervals {
         input.add(new Interval(2, 4));
         input.add(new Interval(5, 9));
         System.out.print("Merged intervals: ");
-        for (Interval interval : MergeIntervals.merge(input))
+        for (Interval interval : Basics.merge(input))
             System.out.print("[" + interval.start + "," + interval.end + "] ");
         System.out.println();
 
@@ -85,7 +85,7 @@ public class MergeIntervals {
         input.add(new Interval(2, 6));
         input.add(new Interval(3, 5));
         System.out.print("Merged intervals: ");
-        for (Interval interval : MergeIntervals.merge(input))
+        for (Interval interval : Basics.merge(input))
             System.out.print("[" + interval.start + "," + interval.end + "] ");
         System.out.println();
     }
