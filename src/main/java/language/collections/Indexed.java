@@ -4,19 +4,33 @@ import  java.util.*;
 
 public class Indexed {
     public static void main(String[] args) {
+        //
         // Arrays
-        int[] arr = new int[] {2, -1, 3, -2, 1, 9, 11, 23, 6, 2};
+        //
+        Integer[] arr = new Integer[] {2, -1, 3, -2, 1, 9, 11, 23, 6, 2};
         Arrays.sort(arr);
         Collections.reverse(Arrays.asList(arr)); //No reverse API in Arrays
         System.out.println(Arrays.toString(arr));
+
+        Collections.swap(Arrays.asList(arr), 0,1); //No swap api in Arrays
+        System.out.println(Arrays.toString(arr));
+
         //Fill
         Arrays.fill(arr, 0);
         System.out.println(Arrays.toString(arr));
 
-        // ArrayList | Vector
-        //Immutable list creation (Only up to 10 elements)
+        //Immutable list (backed by an array)
         List<Integer> immutableList = List.of(1, 2, 3);
         System.out.println(immutableList);
+
+        //Mutable list (backed by an array)
+        List<String> statusCodes = Arrays.asList("OPEN","PROCESS", "CLOSED");
+        statusCodes.set(1, "PROGRESS");
+        System.out.println(statusCodes);
+
+        //
+        // ArrayList | Vector
+        //
 
         Integer n = 9;
         //Create list of size N and fill with value
@@ -46,5 +60,9 @@ public class Indexed {
         Integer[] arr2 = data.toArray(new Integer[0]);
         System.out.println(Arrays.toString(arr2));
         System.out.println(data);
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        arr[i] = (arr[i] + arr[j]) - (arr[j] = arr[i]);
     }
 }

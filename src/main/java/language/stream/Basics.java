@@ -50,7 +50,7 @@ public class Basics {
 
         String[] words = new String[] {"cat", "fox"};
         Map<String,Integer> wordFreq = Arrays.stream(words).collect(Collectors.toMap(k -> k, k -> 1, (v1, v2) -> v1 + v2));
-        wordFreq.forEach( ( k, v) -> System.out.println(k + ":"+v));
+        wordFreq.forEach(( k, v) -> System.out.println(k + ":"+v));
 
         //
         // Collectors.groupingBy (Default output structure = Map; Collector = List)
