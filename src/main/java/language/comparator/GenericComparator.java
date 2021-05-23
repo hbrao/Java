@@ -9,12 +9,9 @@ public class GenericComparator<T extends Comparable> {
         this.data = new ArrayList<>();
     }
 
-    public GenericComparator(List<T> data) {
-        this.data = data;
-    }
-
     public static void main(String[] args) {
         GenericComparator<GenericPoint<Integer,String>> obj = new GenericComparator<>();
+
         obj.data.add(new GenericPoint<>(1, "One"));
         obj.data.add(new GenericPoint<>(2, "Two"));
         obj.data.add(new GenericPoint<>(3, "Three"));
@@ -24,6 +21,18 @@ public class GenericComparator<T extends Comparable> {
         obj.data.sort(Comparator.naturalOrder());
         obj.data.forEach((e) -> System.out.println(e));
 
+        System.out.println("Reversed sort ....");
+        obj.data.sort(Comparator.reverseOrder());
+        obj.data.forEach((e) -> System.out.println(e));
+
+        System.out.println("Sorting by field Y ....");
+        obj.data.sort(Comparator.comparing( (GenericPoint p) ->  { // Key extractor. Key should implement Comparable.
+                return p.getY();
+            }
+        ));
+        obj.data.forEach((e) -> System.out.println(e));
+
+        //If collections contains null, we must wrap Comparators using nullsFirst / nullsLast.
         obj.data.add(null);
 
         System.out.println("Nulls first default sort ....");
@@ -34,28 +43,39 @@ public class GenericComparator<T extends Comparable> {
         obj.data.sort(Comparator.nullsLast(Comparator.reverseOrder()));
         obj.data.forEach((e) -> System.out.println(e));
 
-        System.out.println("Sorting by field Y ....");
-        obj.data.sort(Comparator.nullsFirst(Comparator.comparing(GenericPoint::getY)));
-        obj.data.forEach((e) -> System.out.println(e));
-
+        //Implementing order by field1, field2 ....
         System.out.println("Sorting by field Y and X descending (default)");
-        Comparator<GenericPoint> byY = Comparator.comparing(GenericPoint::getY);
-        Comparator<GenericPoint> byX = Comparator.comparing(GenericPoint::getX);
+        Comparator<GenericPoint> byY = Comparator.comparing((GenericPoint p) -> p.getY());
+        Comparator<GenericPoint> byX = Comparator.comparing((GenericPoint p) -> p.getX());
         obj.data.sort(Comparator.nullsFirst(byY).thenComparing(byX.reversed()));
         obj.data.forEach((e) -> System.out.println(e));
-
-        GenericComparator<Integer> obj2 = new GenericComparator<>(arrayToList(new Integer[] {11, 2, 33}));
-        System.out.println("Navigable integers");
-        obj2.data.sort(Comparator.naturalOrder());
-        obj2.data.forEach( e-> System.out.println(e));
     }
 
-    public static <X> List<X> arrayToList(X[] elements) {
-        List<X> list = new ArrayList<>();
-        for (X  e: elements ) {
-            list.add(e);
+    public static class GenericPoint<X extends Comparable, Y extends Comparable> implements Comparable {
+        X x;
+        Y y;
+
+        public GenericPoint(X x, Y y) {
+            this.x = x;
+            this.y = y;
         }
-        return list;
-    }
 
+        @Override
+        public int compareTo(Object o) {
+            return x.compareTo(((GenericPoint<X, Y>) o).x);
+        }
+
+        @Override
+        public String toString() {
+            return "(" + x + "," + y + ")";
+        }
+
+        public X getX() {
+            return x;
+        }
+
+        public Y getY() {
+            return y;
+        }
+    }
 }

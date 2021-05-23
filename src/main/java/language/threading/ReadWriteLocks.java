@@ -4,7 +4,7 @@ import java.util.stream.*;
 import java.util.concurrent.*;
 import java.util.concurrent.locks.*;
 
-import language.comparator.GenericPoint;
+import language.comparator.GenericComparator;
 
 public class ReadWriteLocks {
 
@@ -12,7 +12,7 @@ public class ReadWriteLocks {
         Point p = new Point();
         IntStream.range(1,100_000)
                  .parallel()
-                 .mapToObj( i -> new GenericPoint<Integer,Integer>(i, i))
+                 .mapToObj( i -> new GenericComparator.GenericPoint<Integer,Integer>(i, i))
                  .forEach( gp -> {
                      if ( gp.getX() % 2 == 0 ) p.move(gp.getX(), gp.getY());
                      else System.out.printf(Thread.currentThread().getName() + ": %s \n" , p.distanceFromOrigin());
