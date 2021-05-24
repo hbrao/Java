@@ -1,4 +1,4 @@
-package course.hierarchical.heap;
+package algorithms.hierarchical.heap;
 
 
 public class MinHeap<T extends Comparable> extends Heap<T> {

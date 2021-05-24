@@ -8,8 +8,8 @@ public class Indexed {
         // Arrays
         //
         Integer[] arr = new Integer[] {2, -1, 3, -2, 1, 9, 11, 23, 6, 2};
-        Arrays.sort(arr);
-        Collections.reverse(Arrays.asList(arr)); //No reverse API in Arrays
+        Arrays.sort(arr, Comparator.comparing((Integer i) -> i.intValue()));
+        Collections.sort(Arrays.asList(arr), Comparator.comparing((Integer i) -> i.intValue()).reversed()); //No reverse API in Arrays
         System.out.println(Arrays.toString(arr));
 
         Collections.swap(Arrays.asList(arr), 0,1); //No swap api in Arrays

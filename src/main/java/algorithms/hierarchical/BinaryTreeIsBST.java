@@ -1,4 +1,4 @@
-package course.hierarchical;
+package algorithms.hierarchical;
 
 /**
  * Created by jananiravi on 12/13/15.
