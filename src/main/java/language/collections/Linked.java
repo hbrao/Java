@@ -16,17 +16,19 @@ public class Linked {
         deque.peekLast();
         deque.removeLast();
         deque.removeFirst();
+        System.out.println("Is Empty ? " + deque.isEmpty() + " -> " + deque.size());
+
+        //Stack
+        deque.push(2); // addFirst
+        deque.peek(); // peekFirst
+        deque.pop(); // removeFirst
 
         //Queue
         Queue<Integer> queue = data;
         queue.add(10); // addLast
         queue.peek(); // peekFirst
         queue.remove(); // removeFirst
-
-        //Stack
-        deque.push(2); // addFirst
-        deque.peek(); // peekFirst
-        deque.pop(); // removeFirst
+        System.out.println("Is Empty ? " + queue.isEmpty() + " -> " + queue.size());
 
         //List
         List<Integer> list = data;
@@ -34,7 +36,7 @@ public class Linked {
         list.add(0, 12); // addFirst
         list.remove(0); //removeFirst
         list.remove(list.size() - 1); // removeLast
-
+        System.out.println("Is Empty ? " + list.isEmpty() + " -> " + list.size());
 
         System.out.println(data);
         Iterator<Integer> iter = data.descendingIterator();
