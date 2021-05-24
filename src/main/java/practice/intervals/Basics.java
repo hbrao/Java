@@ -37,25 +37,33 @@ public class Basics {
 
     public static List<Interval> insert(List<Interval> intervals, Interval newInterval) {
         List<Interval> mergedIntervals = new ArrayList<>();
-        Boolean overlap = false;
-        for(Interval i : intervals) {
-            //A close observation will tell us that whenever the two intervals overlap, one of the interval’s start time lies within the other interval.
-            if ( newInterval.start >= i.start && newInterval.start <= i.end || i.start >= newInterval.start && i.start <= newInterval.end ) {
-                newInterval.start = Math.min(i.start, newInterval.start);
-                newInterval.end = Math.max(i.end, newInterval.end);
-                overlap = true;
-            } else {
-                if ( overlap ) {
-                    mergedIntervals.add(newInterval);
-                    overlap = false;
-                }
-                mergedIntervals.add(i);
-            }
+        Integer i =0;
+
+        //Skip all intervals those come before new interval.
+        while ( i < intervals.size() && newInterval.start > intervals.get(i).end ) {
+            mergedIntervals.add(intervals.get(i));
+            i += 1;
         }
 
-        if ( overlap ) {
-            mergedIntervals.add(newInterval);
+        //Merge all overlapping intervals into newInterval
+        //A close observation will tell us that whenever the two intervals overlap, one of the interval’s start time lies within the other interval.
+        while ( i < intervals.size()
+                && ( newInterval.start >= intervals.get(i).start && newInterval.start <= intervals.get(i).end
+                     || intervals.get(i).start >= newInterval.start && intervals.get(i).start <= newInterval.end
+                )
+        ) {
+            newInterval.start = Math.min(newInterval.start, intervals.get(i).start);
+            newInterval.end = Math.max(newInterval.end, intervals.get(i).end);
+            i += 1;
         }
+        mergedIntervals.add(newInterval);
+
+        //Add remaining intervals.
+        while ( i < intervals.size() ) {
+            mergedIntervals.add( intervals.get(i) );
+            i += 1;
+        }
+
         return mergedIntervals;
     }
 
@@ -85,6 +93,22 @@ public class Basics {
         System.out.print("Merged intervals: ");
         for (Interval interval : Basics.merge(input))
             System.out.print("[" + interval.start + "," + interval.end + "] ");
+        System.out.println();
+
+
+        input = new ArrayList<Interval>();
+        input.add(new Interval(1, 2));
+        input.add(new Interval(7, 9));
+        input.add(new Interval(8, 10));
+        List<Interval> merged = Basics.merge(input);
+        System.out.print("Merged intervals: ");
+        merged.forEach( interval -> System.out.print("[" + interval.start + "," + interval.end + "] ") );
+        System.out.println();
+        merged = insert(merged, new Interval(5, 6));
+        merged = insert(merged, new Interval(9, 12));
+        merged = insert(merged, new Interval(80,99));
+        System.out.print("Merged intervals: ");
+        merged.forEach( interval -> System.out.print("[" + interval.start + "," + interval.end + "] ") );
         System.out.println();
     }
 
