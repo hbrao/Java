@@ -1,4 +1,4 @@
-package problems.project03;
+package projects.project03;
 
 import java.util.*;
 

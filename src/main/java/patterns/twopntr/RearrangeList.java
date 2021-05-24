@@ -1,4 +1,4 @@
-package practice.twopntr;
+package patterns.twopntr;
 public class RearrangeList {
 
     public static void reorder(ListNode head) {

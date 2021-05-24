@@ -1,4 +1,4 @@
-package practice.dynamic;
+package patterns.dynamic;
 
 import java.util.*;
 import java.util.stream.*;

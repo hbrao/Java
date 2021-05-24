@@ -1,4 +1,4 @@
-package problems.project04;
+package projects.project04;
 
 import java.math.*;
 import java.util.*;

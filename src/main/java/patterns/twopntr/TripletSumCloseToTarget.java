@@ -1,4 +1,4 @@
-package practice.twopntr;
+package patterns.twopntr;
 
 import java.util.*;
 import org.junit.*;

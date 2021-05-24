@@ -1,4 +1,4 @@
-package practice.window;
+package patterns.window;
 
 import java.util.*;
 import java.util.stream.*;

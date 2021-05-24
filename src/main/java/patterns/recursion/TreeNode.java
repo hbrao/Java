@@ -1,4 +1,4 @@
-package practice.recursion;
+package patterns.recursion;
 
 public class TreeNode {
     int val;

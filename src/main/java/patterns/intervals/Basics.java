@@ -1,4 +1,4 @@
-package practice.intervals;
+package patterns.intervals;
 
 import java.util.*;
 

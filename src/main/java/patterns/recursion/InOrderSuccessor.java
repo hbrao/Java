@@ -1,4 +1,4 @@
-package practice.recursion;
+package patterns.recursion;
 
 import org.junit.*;
 import java.util.*;

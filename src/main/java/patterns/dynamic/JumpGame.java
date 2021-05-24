@@ -1,4 +1,4 @@
-package practice.dynamic;
+package patterns.dynamic;
 
 class JumpGame {
 

@@ -1,4 +1,4 @@
-package practice.divide;
+package patterns.divide;
 
 import java.util.*;
 import java.util.stream.*;

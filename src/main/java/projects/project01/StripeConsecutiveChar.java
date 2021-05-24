@@ -1,4 +1,4 @@
-package problems.project01;
+package projects.project01;
 
 /*
 Write a function that takes two parameters, a string and an integer.
