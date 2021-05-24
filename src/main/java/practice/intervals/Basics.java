@@ -37,17 +37,16 @@ public class Basics {
 
     public static List<Interval> insert(List<Interval> intervals, Interval newInterval) {
         List<Interval> mergedIntervals = new ArrayList<>();
-        Integer ms = newInterval.start;
-        Integer me = newInterval.end;
         Boolean overlap = false;
         for(Interval i : intervals) {
-            if ( i.start < ms && i.end > ms || i.start < me && i.end > me || i.start > ms && i.end < me ) {
-                ms = Math.min(i.start, ms);
-                me = Math.max(i.end, me);
+            //A close observation will tell us that whenever the two intervals overlap, one of the interval’s start time lies within the other interval.
+            if ( newInterval.start >= i.start && newInterval.start <= i.end || i.start >= newInterval.start && i.start <= newInterval.end ) {
+                newInterval.start = Math.min(i.start, newInterval.start);
+                newInterval.end = Math.max(i.end, newInterval.end);
                 overlap = true;
             } else {
                 if ( overlap ) {
-                    mergedIntervals.add(new Interval(ms, me));
+                    mergedIntervals.add(newInterval);
                     overlap = false;
                 }
                 mergedIntervals.add(i);
@@ -55,7 +54,7 @@ public class Basics {
         }
 
         if ( overlap ) {
-            mergedIntervals.add(new Interval(ms, me));
+            mergedIntervals.add(newInterval);
             overlap = false;
         }
         return mergedIntervals;
