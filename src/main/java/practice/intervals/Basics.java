@@ -55,7 +55,6 @@ public class Basics {
 
         if ( overlap ) {
             mergedIntervals.add(newInterval);
-            overlap = false;
         }
         return mergedIntervals;
     }
