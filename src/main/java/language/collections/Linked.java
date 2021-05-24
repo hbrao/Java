@@ -6,29 +6,35 @@ public class Linked {
     public static void main(String[] args) {
         //LinkedList | ConcurrentLinkedDeque
 
-        Deque<Integer> data = new LinkedList<>();
-
-        //May throw NoSuchElementException when extracting element out.
+        LinkedList<Integer> data = new LinkedList<>(List.of(1, 2, 3, 4));
 
         //Deque
-        data.addLast(1);
-        data.addFirst(0);
-        data.peekFirst();
-        data.peekLast();
-        data.removeLast();
-        data.removeFirst();
+        Deque<Integer> deque = data;
+        deque.addLast(1);
+        deque.addFirst(0);
+        deque.peekFirst();
+        deque.peekLast();
+        deque.removeLast();
+        deque.removeFirst();
+
+        //Queue
+        Queue<Integer> queue = data;
+        queue.add(10); // addLast
+        queue.peek(); // peekFirst
+        queue.remove(); // removeFirst
 
         //Stack
-        data.push(2); // addFirst
-        data.push(1);
-        data.peek(); // peekFirst
-        data.pop(); // removeFirst
+        deque.push(2); // addFirst
+        deque.peek(); // peekFirst
+        deque.pop(); // removeFirst
 
-        //LinkedList
-        data.add(10);
-        data.add(12);
-        data.add(20);
-        data.remove(12);
+        //List
+        List<Integer> list = data;
+        list.add(10); // addLast
+        list.add(0, 12); // addFirst
+        list.remove(0); //removeFirst
+        list.remove(list.size() - 1); // removeLast
+
 
         System.out.println(data);
         Iterator<Integer> iter = data.descendingIterator();

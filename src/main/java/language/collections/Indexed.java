@@ -46,8 +46,11 @@ public class Indexed {
         data.add(9);
         data.add( n / 2 , - 10);
         //Remove
+        System.out.println(data);
         data.remove( 0 );
         data.removeIf( val -> val < 0 );
+        data.remove(Integer.valueOf(9));
+        System.out.println(data);
         //Set
         data.set(0 , 0);
         //Replace all
@@ -62,7 +65,7 @@ public class Indexed {
         System.out.println(data);
     }
 
-    public static void swap(int[] arr, int i, int j) {
-        arr[i] = (arr[i] + arr[j]) - (arr[j] = arr[i]);
+    public static void swap(int[] arr, int left, int right) {
+        arr[left] = (arr[left] + arr[right]) - (arr[right] = arr[left]);
     }
 }
