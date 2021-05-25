@@ -95,6 +95,6 @@ public class BuildBinaryTree {
     @Test
     public void testBinaryTree() {
         TreeNode root  = buildTree(this.preorder, this.inorder);
-        Assert.assertTrue(IntStream.of(inorder).boxed().collect(Collectors.toList()).equals(inOrder(root)));
+        Assert.assertTrue(Arrays.stream(inorder).boxed().collect(Collectors.toList()).equals(inOrder(root)));
     }
 }
