@@ -1,6 +1,9 @@
-package patterns.recursion;
+package patterns.iterative;
 
 import org.junit.*;
+import patterns.BuildBinaryTree;
+import patterns.TreeNode;
+
 import java.util.*;
 
 public class InOrderSuccessor {
@@ -37,7 +40,7 @@ public class InOrderSuccessor {
 
     @Test
     public void testInOrderSuccessor() {
-        TreeNode root = new BinaryTreeFromArray(List.of(new int[]{2,1,3}, new int[]{1,2,3})).buildTree();
+        TreeNode root = new BuildBinaryTree(List.of(new int[]{2,1,3}, new int[]{1,2,3})).buildTree();
         TreeNode p = root.left;
         TreeNode successor = inorderSuccessor(root, p);
         Assert.assertTrue(root.val == successor.val);

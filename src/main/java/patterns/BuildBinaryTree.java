@@ -1,4 +1,4 @@
-package patterns.recursion;
+package patterns;
 
 import java.util.*;
 import java.util.stream.*;
@@ -8,13 +8,13 @@ import org.junit.runner.*;
 import org.junit.runners.*;
 
 @RunWith(Parameterized.class)
-public class BinaryTreeFromArray {
+public class BuildBinaryTree {
 
     int[] preorder;
     int[] inorder;
 
     //Constructor used by JUnit to set test data.
-    public BinaryTreeFromArray(List<int []> input) {
+    public BuildBinaryTree(List<int []> input) {
         this.preorder  = input.get(0);
         this.inorder = input.get(1);
     }
@@ -66,7 +66,7 @@ public class BinaryTreeFromArray {
     }
 
     //Return inorder traversal of a binary tree given its root node.
-    private List<Integer> inOrderIterative(TreeNode root) {
+    private List<Integer> inOrder(TreeNode root) {
         Deque<TreeNode> stk = new LinkedList<>();
         List<Integer> data = new ArrayList<>();
         TreeNode n  = root;
@@ -95,6 +95,6 @@ public class BinaryTreeFromArray {
     @Test
     public void testBinaryTree() {
         TreeNode root  = buildTree(this.preorder, this.inorder);
-        Assert.assertTrue(IntStream.of(inorder).boxed().collect(Collectors.toList()).equals(inOrderIterative(root)));
+        Assert.assertTrue(IntStream.of(inorder).boxed().collect(Collectors.toList()).equals(inOrder(root)));
     }
 }
