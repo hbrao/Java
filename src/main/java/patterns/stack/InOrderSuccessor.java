@@ -1,4 +1,4 @@
-package patterns.iterative;
+package patterns.stack;
 
 import org.junit.*;
 import patterns.BuildBinaryTree;
