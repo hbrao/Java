@@ -1,7 +1,6 @@
 package language.collections;
 
 import  java.util.*;
-import java.util.stream.Collectors;
 
 public class Indexed {
     public static void main(String[] args) {
@@ -25,14 +24,20 @@ public class Indexed {
         Arrays.fill(arr, 0);
         System.out.println(Arrays.toString(arr));
 
-        //Immutable list (backed by an array)
+        //Unmodifiable list (backed by an array)
         List<Integer> immutableList = List.of(1, 2, 3);
         System.out.println(immutableList);
 
-        //Mutable list (backed by an array)
+        //Modifiable fixed size list (backed by a fixed length array).
         List<String> statusCodes = Arrays.asList("OPEN","PROCESS", "CLOSED");
-        statusCodes.set(1, "PROGRESS");
+        statusCodes.set(1, "INPROCESS");
         System.out.println(statusCodes);
+
+        //Mutable list (Backed by re-sizable array)
+        List<String> statusList = new ArrayList<>(List.of("OPEN", "PROCESS", "CLOSED"));
+        statusList.set(1, "INPROCESS");
+        statusList.add("ERROR");
+        System.out.println(statusList);
 
         //
         // ArrayList | Vector
