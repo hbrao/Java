@@ -1,12 +1,16 @@
 package language.collections;
 
 import  java.util.*;
+import java.util.stream.Collectors;
 
 public class Indexed {
     public static void main(String[] args) {
         //
         // Arrays
         //
+
+        String str = "ABCD";
+        Character[] chStr = str.chars().mapToObj(val -> (char) val).toArray(Character[]::new);
 
         int[] raw = new int[] {2, -1, 3, -2, 1, 9, 11, 23, 6, 2};
 

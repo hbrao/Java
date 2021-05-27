@@ -7,7 +7,10 @@ import java.util.stream.*;
 public class Strings {
 
     public static void main(String[] args) {
-        String s = "Daily Problem Solving";
+        char[] chArr = new char[] {'D', 'a', 'i', 'l', 'y', '\u0020', 'p', 'r', 'o', 'b', 'l', 'e', 'm', '\u0020', 's', 'o', 'l', 'v', 'i', 'n', 'g'};
+        String s = String.valueOf(chArr);
+        System.out.println(s);
+
         //Get character at index
         System.out.println(s.charAt(3));
 
@@ -23,12 +26,15 @@ public class Strings {
         //Get sub string [s, ]
         System.out.println(s.substring(1));
 
-        //Convert to list of Characters
+        //Convert String to list of Characters and back
         List<Character> chrList = s.chars()
                                    .mapToObj( val -> (char) val)
                                    .collect(Collectors.toList());
         List<Character> charSubList  = chrList.subList(6,13);
         System.out.println(charSubList);
+        String originalStr = chrList.stream().map(ch -> String.valueOf(ch)).collect(Collectors.joining(""));
+        System.out.println("Original = " +  originalStr);
+
 
         //Shuffle list of characters
         Collections.shuffle(charSubList);

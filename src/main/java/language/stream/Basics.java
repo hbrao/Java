@@ -21,22 +21,18 @@ public class Basics {
         // Arrays to collections
         //
 
+        char[] chArray = new char[] {'h', 'e', 'l', 'l', 'o'};
+        List<Character> charList = String.valueOf(chArray).chars().mapToObj( val -> (char) val).collect(Collectors.toList());
+        System.out.println(charList);
+
         int[] data = {1,2,2,3,4,4,5};
         List<Integer> arrList1 = Arrays.stream(data).boxed().collect(Collectors.toList());
         arrList1.add(100);
         System.out.println("Array List = "+arrList1);
 
-        List<Integer> linkedList = Arrays.stream(data).boxed().collect(Collectors.toCollection(() -> new LinkedList<>()));
-        linkedList.add(111);
-        System.out.println("Linked List = "+linkedList);
-
         Set<Integer> set = Arrays.stream(data).boxed().collect(Collectors.toSet());
         set.add(222);
         System.out.println("Set = "+set);
-
-        SortedSet<Integer> sortedSet = Arrays.stream(data).boxed().collect(Collectors.toCollection(() ->  new TreeSet<>()));
-        set.add(222);
-        System.out.println("Navigable Set = "+sortedSet);
 
         Map<Integer,String> hm1 = Arrays.stream(data, 0, data.length / 2).boxed()
                                            .distinct()
@@ -46,35 +42,42 @@ public class Basics {
                                                             , (old_value, new_value) -> new_value //Merge function
                                                    )
                                            );
-        System.out.println("Map 1 Distinct keys= "+hm1);
-
-        String[] words = new String[] {"cat", "fox"};
-        Map<String,Integer> wordFreq = Arrays.stream(words).collect(Collectors.toMap(k -> k, k -> 1, (v1, v2) -> v1 + v2));
-        wordFreq.forEach(( k, v) -> System.out.println(k + ":"+v));
-
-        //
-        // Collectors.groupingBy (Default output structure = Map; Collector = List)
-        //
-
-        Map<Integer, List<Integer>> hm2= Arrays.stream(data).boxed().collect(Collectors.groupingBy(e -> e.intValue()));
-        System.out.println("Map 2 Group repeated values into List= "+hm2);
+        System.out.println("Distinct keys= "+hm1);
 
         Map<Integer, Set<String>> hm4= Arrays.stream(data).boxed().collect(Collectors.groupingBy(
-                e -> e.intValue(), //Define classifier (Key)
-                Collectors.mapping( (i) -> "'" +i.toString() + "'", Collectors.toSet()) //Specify collector (Values).
+                (Integer i) -> i.intValue(), //Define classifier (Key)
+                Collectors.mapping( // Define value mapping logic
+                        (Integer i) -> String.valueOf(i), // Mapper
+                        Collectors.toSet() //Collector
+                )
         ));
-        System.out.println("Map 4 Group repeated values into Set= "+hm4);
+        System.out.println("Group repeated values into HashMap = " + hm4);
 
-        Map<Integer,Set<Integer>> hm5 = Arrays.stream(data).boxed().collect(Collectors.groupingBy(
-                Integer::intValue, // Define classifier (Key) //TODO Why can't I use e -> e.intValue()
-                () ->  new TreeMap<> (Comparator.reverseOrder()), //Change output Structure
-                Collectors.toSet() //Specify collector (Values)
+        Map<Integer, Long> hm3= Arrays.stream(data).boxed().collect(Collectors.groupingBy( (Integer i) -> i.intValue(), Collectors.counting()));
+        System.out.println("Group keys with their counts = " + hm3);
+
+        //
+        //Collect into a desired java collection.
+        //
+
+        List<Integer> linkedList = Arrays.stream(data).boxed().collect(Collectors.toCollection(() -> new LinkedList<>()));
+        linkedList.add(111);
+        System.out.println("Linked List = "+linkedList);
+
+        SortedSet<Integer> sortedSet = Arrays.stream(data).boxed().collect(Collectors.toCollection(() ->  new TreeSet<>( Comparator.comparing( i -> i.intValue() ))));
+        set.add(222);
+        System.out.println("Navigable Set = "+sortedSet);
+
+        Map<Integer,Set<String>> hm5 = Arrays.stream(data).boxed().collect(Collectors.groupingBy(
+                (Integer i) -> i.intValue(), // Define classifier (Key)
+                () ->  new TreeMap<> (Comparator.comparing( i -> i.intValue() )), //Specify map factory returning desired concrete map instance.
+                Collectors.mapping( // Define value mapping logic
+                    (Integer i) -> String.valueOf(i), // Mapper
+                    Collectors.toSet() //Collector
+                )
         ));
-        System.out.println("Map 5 (sorted reverse) Group repeated values into Set");
-        hm5.entrySet().forEach( (Map.Entry<Integer,Set<Integer>> e) -> System.out.println(e.getKey() + " : " + e.getValue()) );
-
-        Map<Integer, Long> hm3= Arrays.stream(data).boxed().collect(Collectors.groupingBy( e -> e.intValue(), Collectors.counting()));
-        System.out.println("Map 3 Count occurrences of each element= "+hm3);
+        System.out.println("Group repeated values into TreeMap");
+        hm5.entrySet().forEach( (Map.Entry<Integer,Set<String>> e) -> System.out.println(e.getKey() + " : " + e.getValue()) );
 
         //
         // Statistics
