@@ -32,7 +32,7 @@ public class Strings {
                                    .collect(Collectors.toList());
         List<Character> charSubList  = chrList.subList(6,13);
         System.out.println(charSubList);
-        String originalStr = chrList.stream().map(ch -> String.valueOf(ch)).collect(Collectors.joining(""));
+        String originalStr = chrList.stream().map(ch -> String.valueOf(Character.toUpperCase(ch))).collect(Collectors.joining(""));
         System.out.println("Original = " +  originalStr);
 
 

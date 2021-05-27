@@ -45,7 +45,7 @@ public class Basics {
         System.out.println("Distinct keys= "+hm1);
 
         Map<Integer, Set<String>> hm4= Arrays.stream(data).boxed().collect(Collectors.groupingBy(
-                (Integer i) -> i.intValue(), //Define classifier (Key)
+                (Integer i) -> i.intValue(), //Define key classifier
                 Collectors.mapping( // Define value mapping logic
                     (Integer i) -> String.valueOf(i), // Value mapper
                     Collectors.toSet() //Values Collector
@@ -69,7 +69,7 @@ public class Basics {
         System.out.println("Navigable Set = "+sortedSet);
 
         Map<Integer,Set<String>> hm5 = Arrays.stream(data).boxed().collect(Collectors.groupingBy(
-                (Integer i) -> i.intValue(), // Define classifier (Key)
+                (Integer i) -> i.intValue(), // Define key classifier
                 () ->  new TreeMap<> (Comparator.comparing( i -> i.intValue() )), //Specify map factory returning desired concrete map instance.
                 Collectors.mapping( // Define value mapping logic
                     (Integer i) -> String.valueOf(i), // Value mapper

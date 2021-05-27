@@ -37,32 +37,22 @@ public class Permutations {
 
     //Iterative implementation of permutations.
     public static List<List<Integer>> perumteIterative(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        if ( nums.length == 0 ) {
-            result.add(new ArrayList<>());
-        } else {
-            Integer fromIdx = result.size();
-            for(Integer i = 0; i < nums.length ; i ++ ) {
-                if ( result.isEmpty() ) {
-                    List<Integer> l = new ArrayList<>();
-                    l.add(nums[i]);
-                    result.add(l);
-                } else {
-                    List<List<Integer>> previousPermutations = result.subList(fromIdx, result.size());
-                    Integer permutationSize = previousPermutations.get(0).size();
-                    Integer numPreviousPermutations = previousPermutations.size();
-                    fromIdx = result.size();
-                    for( Integer k =0 ; k < numPreviousPermutations ; k ++ ) {
-                       for( Integer j = 0; j <= permutationSize ; j ++ ) {
-                           List<Integer> l = new ArrayList<>(previousPermutations.get(k));
-                           l.add(j, nums[i]);
-                           previousPermutations.add(l);
-                       }
-                    }
+        Deque<List<Integer>> queue = new LinkedList<>();
+        queue.add(new ArrayList<>());
+        for(Integer num : nums) {
+            Integer qsize = queue.size();
+            while( qsize > 0 ) {
+                List<Integer> prevPermutation = queue.remove();
+                Integer prevPermutationSize = prevPermutation.size();
+                for(Integer i = 0; i <= prevPermutationSize ;  i ++) {
+                    List<Integer> newPermutation = new ArrayList<>(prevPermutation);
+                    newPermutation.add(i, num);
+                    queue.add(newPermutation);
                 }
+                qsize -=1 ;
             }
         }
 
-        return result.stream().filter( l -> l.size() == nums.length ).collect(Collectors.toList());
+        return queue.stream().collect(Collectors.toList());
     }
 }
