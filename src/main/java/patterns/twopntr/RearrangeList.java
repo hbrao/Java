@@ -1,4 +1,7 @@
 package patterns.twopntr;
+
+import patterns.ListNode;
+
 public class RearrangeList {
 
     public static void reorder(ListNode head) {
@@ -45,15 +48,6 @@ public class RearrangeList {
         while (head != null) {
             System.out.print(head.value + " ");
             head = head.next;
-        }
-    }
-
-    static class ListNode {
-        int value = 0;
-        ListNode next;
-
-        ListNode(int value) {
-            this.value = value;
         }
     }
 
