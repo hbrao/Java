@@ -47,8 +47,8 @@ public class Basics {
         Map<Integer, Set<String>> hm4= Arrays.stream(data).boxed().collect(Collectors.groupingBy(
                 (Integer i) -> i.intValue(), //Define classifier (Key)
                 Collectors.mapping( // Define value mapping logic
-                        (Integer i) -> String.valueOf(i), // Mapper
-                        Collectors.toSet() //Collector
+                    (Integer i) -> String.valueOf(i), // Value mapper
+                    Collectors.toSet() //Values Collector
                 )
         ));
         System.out.println("Group repeated values into HashMap = " + hm4);
@@ -72,8 +72,8 @@ public class Basics {
                 (Integer i) -> i.intValue(), // Define classifier (Key)
                 () ->  new TreeMap<> (Comparator.comparing( i -> i.intValue() )), //Specify map factory returning desired concrete map instance.
                 Collectors.mapping( // Define value mapping logic
-                    (Integer i) -> String.valueOf(i), // Mapper
-                    Collectors.toSet() //Collector
+                    (Integer i) -> String.valueOf(i), // Value mapper
+                    Collectors.toSet() // Values Collector
                 )
         ));
         System.out.println("Group repeated values into TreeMap");
