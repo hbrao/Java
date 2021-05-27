@@ -10,36 +10,56 @@ public class Combinations {
         subsets(IntStream.range(1, 5).toArray(), 0).forEach( lst -> {
             System.out.println(lst);
         });
+        
+        System.out.println();
+
+        subsetsIterative(IntStream.range(1, 5).toArray()).forEach( lst -> {
+            System.out.println(lst);
+        });
     }
 
     public static List<List<Integer>> subsets(int[] nums, Integer k) {
-        List<Integer> nums_lst = IntStream.of(nums).boxed().collect(Collectors.toList());
-
         List<List<Integer>> result = new LinkedList<>();
 
         //Add empty set
         if ( k == 0 )  result.add(new ArrayList<>());
 
-        subsetHelper(nums_lst, new ArrayList<Integer>(), 0, result, k);
+        subsetHelper(Arrays.stream(nums).boxed().toArray(Integer[]::new),0, result, new ArrayList<Integer>(), k);
+
         return result;
     }
 
-    public static void subsetHelper(List<Integer> nums_lst, List<Integer> buffer, Integer first,  List<List<Integer>> collector, Integer k) {
-        if ( k != 0 && buffer.size() == k ) {
+    public static void subsetHelper(Integer[] nums, Integer start,  List<List<Integer>> collector,  List<Integer> buffer,  Integer k) {
+        if ( k != 0 && buffer.size() == k ) { // Stop at k combinations.
             return;
         }
 
         // Total number branches = size of of input
-        for( Integer i = first; i < nums_lst.size() ; i ++ ) {
+        for( Integer i = start; i < nums.length ; i ++ ) {
             //Collect subset
-            buffer.add(nums_lst.get(i));
+            buffer.add(nums[i]);
             if ( buffer.size() == k || k == 0) collector.add(new ArrayList<>(buffer));
 
             //Recursive call to collect higher sized subsets.
-            subsetHelper(nums_lst, buffer, i + 1,  collector, k);
+            subsetHelper(nums,i + 1, collector, buffer,  k);
 
             //Backtrack to re-use the buffer in next branch.
             buffer.remove(buffer.size() - 1);
         }
+    }
+
+    //Iterative implementation of power set.
+    public static List<List<Integer>> subsetsIterative(int[] nums) {
+        List<List<Integer>> subSets = new ArrayList<>();
+        subSets.add(new ArrayList<>());
+        for(Integer num : nums) {
+            Integer size = subSets.size();
+            for(Integer i = 0; i < size  ; i ++) {
+                List<Integer> l1 = new ArrayList<>(subSets.get(i));
+                l1.add(num);
+                subSets.add(l1);
+            }
+        }
+        return subSets;
     }
 }

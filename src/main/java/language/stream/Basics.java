@@ -38,7 +38,7 @@ public class Basics {
         set.add(222);
         System.out.println("Navigable Set = "+sortedSet);
 
-        Map<Integer,String> hm1 = Arrays.stream(data).boxed()
+        Map<Integer,String> hm1 = Arrays.stream(data, 0, data.length / 2).boxed()
                                            .distinct()
                                            .collect(Collectors.toMap(
                                                               (i) -> i.intValue() //Key mapper

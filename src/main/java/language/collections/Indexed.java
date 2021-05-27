@@ -1,13 +1,19 @@
 package language.collections;
 
 import  java.util.*;
+import java.util.stream.Collectors;
 
 public class Indexed {
     public static void main(String[] args) {
         //
         // Arrays
         //
-        Integer[] arr = new Integer[] {2, -1, 3, -2, 1, 9, 11, 23, 6, 2};
+
+        int[] raw = new int[] {2, -1, 3, -2, 1, 9, 11, 23, 6, 2};
+
+        //Convert int[] to Integer[]
+        Integer[] arr = Arrays.stream(raw).boxed().toArray(Integer[]::new);
+
         Arrays.sort(arr, Comparator.comparing((Integer i) -> i.intValue()));
         Collections.sort(Arrays.asList(arr), Comparator.comparing((Integer i) -> i.intValue()).reversed()); //No reverse API in Arrays
         System.out.println(Arrays.toString(arr));
