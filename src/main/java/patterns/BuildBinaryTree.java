@@ -28,8 +28,8 @@ public class BuildBinaryTree {
         List<Integer> pre = Arrays.stream(preorder).boxed().collect(Collectors.toList());
         List<Integer> ino = Arrays.stream(inorder).boxed().collect(Collectors.toList());
 
-        System.out.println(pre.toString());
-        System.out.println(ino.toString());
+        System.out.println(pre);
+        System.out.println(ino);
 
         return buildTreeHelper(pre, ino);
     }
