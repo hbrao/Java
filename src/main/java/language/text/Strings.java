@@ -9,7 +9,8 @@ public class Strings {
     public static void main(String[] args) {
         char[] chArr = new char[] {'D', 'a', 'i', 'l', 'y', '\u0020', 'p', 'r', 'o', 'b', 'l', 'e', 'm', '\u0020', 's', 'o', 'l', 'v', 'i', 'n', 'g'};
         String s = String.valueOf(chArr);
-        System.out.println(s);
+        System.out.println("String : " + s);
+        System.out.println("char array : " + Arrays.toString(s.toCharArray()));
 
         //Get character at index
         System.out.println(s.charAt(3));

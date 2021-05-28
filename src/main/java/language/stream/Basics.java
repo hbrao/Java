@@ -24,6 +24,7 @@ public class Basics {
         char[] chArray = new char[] {'h', 'e', 'l', 'l', 'o'};
         List<Character> charList = String.valueOf(chArray).chars().mapToObj( val -> (char) val).collect(Collectors.toList());
         System.out.println(charList);
+        System.out.println("Original string: " + charList.stream().map( ch -> String.valueOf(ch)).collect(Collectors.joining()));
 
         int[] data = {1,2,2,3,4,4,5};
         List<Integer> arrList1 = Arrays.stream(data).boxed().collect(Collectors.toList());

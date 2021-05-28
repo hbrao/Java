@@ -1,7 +1,7 @@
 package language.collections;
 
-import  java.util.*;
-import java.util.stream.Collectors;
+import java.util.*;
+import java.util.stream.*;
 
 public class Indexed {
     public static void main(String[] args) {
@@ -11,10 +11,9 @@ public class Indexed {
 
         String str = "ABCD";
         Character[] chStr = str.chars().mapToObj(val -> (char) val).toArray(Character[]::new);
+        System.out.println("Original string :" + Arrays.stream(chStr).map(ch -> String.valueOf(ch) ).collect(Collectors.joining()));
 
         int[] raw = new int[] {2, -1, 3, -2, 1, 9, 11, 23, 6, 2};
-
-        //Convert int[] to Integer[]
         Integer[] arr = Arrays.stream(raw).boxed().toArray(Integer[]::new);
 
         Arrays.sort(arr, Comparator.comparing((Integer i) -> i.intValue()));
