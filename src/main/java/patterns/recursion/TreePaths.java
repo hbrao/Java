@@ -1,4 +1,4 @@
-package patterns.backtrack;
+package patterns.recursion;
 
 import patterns.TreeNode;
 import java.util.*;
