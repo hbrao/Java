@@ -1,44 +1,47 @@
 package patterns.dynamic;
 
 import java.util.*;
-import java.util.stream.*;
 
+import org.junit.*;
+import org.junit.runner.*;
+import org.junit.runners.*;
+
+@RunWith(Parameterized.class)
 public class Knapsack {
-    public static void main(String[] args) {
-        //NOTE: Adding 0 as the first element in all collections This is to represent 0 capacity results in 0 profit
-        //Item weights & profits
-        List<Integer> wt = List.of(0, 1, 2, 3, 4);
-        List<Integer> pr = List.of(0, 3, 4, 5, 7);
 
-        //Capacity distribution for knapsack size of 5
-        Integer knapsackSize = 5 ;
-        List<Integer> cp = IntStream.range(0, knapsackSize + 1).boxed().collect(Collectors.toList());
+    int[] weights;
+    int[] profits;
+    int capacity;
+    int maxProfitExpected;
 
-        //Initialize matrix
-        List<Integer> zeros = IntStream.range(0, 6).map(x -> 0).boxed().collect(Collectors.toList());
-        Map<Integer,List<Integer>> dp = new HashMap<>();
-        for(Integer i = 0 ; i < wt.size() ; i ++ ) {
-            dp.put(i, new ArrayList<>(zeros));
-        }
+    //Must have matching constructor to pass data returned by getTestData() API.
+    public Knapsack(int[] weights, int[] profits, int capacity, int maxProfitExpected) {
+        this.weights = weights;
+        this.profits = profits;
+        this.capacity = capacity;
+        this.maxProfitExpected = maxProfitExpected;
+    }
 
-        //For each item
-        for( Integer i = 1 ; i < wt.size() ; i ++ ) {
-            Integer itemWeight = wt.get(i);
-            Integer itemProfit = pr.get(i);
-            //For each capacity
-            for ( Integer capacity : cp ) {
-                if ( capacity >= itemWeight ) {
-                    Integer p1 = itemProfit + dp.get(i - 1).get(capacity - itemWeight);
-                    Integer p2 = dp.get(i - 1).get(capacity);
+    //Must be static
+    @Parameterized.Parameters
+    public static Object[][] getTestData() {
+        return  new Object[][] {
+           {new int[]{1, 2, 3, 5}, new int[]{1, 6, 10, 16},  7, 7}
+        };
+    }
 
-                    dp.get(i).set(capacity, Math.max(p1, p2));
-                } else {
-                    dp.get(i).set(capacity, dp.get(i -1).get(capacity));
-                }
-            }
-        }
+    public int getMaxProfitRecursive() {
+        return  0;
+    }
 
-        //Print the result
-        System.out.println("Maximum profit = " + dp.get(wt.size() - 1).get(cp.size() - 1));
+    @Test
+    public void testMaxProfit() {
+        System.out.println("Item weights : " + Arrays.toString(weights));
+        System.out.println("Item profits : " + Arrays.toString(profits));
+        System.out.println("Capacity     : " + capacity);
+
+        int maxProfitActual = getMaxProfitRecursive();
+
+        Assert.assertEquals(String.format("Expected %s != Actual %s ", maxProfitActual , maxProfitExpected) , maxProfitActual , maxProfitExpected);
     }
 }
