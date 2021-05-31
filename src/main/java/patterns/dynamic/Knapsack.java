@@ -61,12 +61,12 @@ public class Knapsack {
         }
 
         printMatrix(dp);
-        printMaxProfitItems(itemWeights, itemProfits, dp);
+        printMaxProfitItemWeights(itemWeights, itemProfits, dp);
 
         return dp[itemWeights.length][capacity];
     }
 
-    public void printMaxProfitItems(Integer[] itemWeights, Integer[] itemProfits, int[][] dp) {
+    public static void printMaxProfitItemWeights(Integer[] itemWeights, Integer[] itemProfits, int[][] dp) {
         Integer itemIdx = dp.length - 1;
         Integer capacityIdx = dp[0].length - 1;
         Integer totalProfit = dp[itemIdx][capacityIdx];
@@ -81,7 +81,7 @@ public class Knapsack {
             itemIdx -= 1;
         }
 
-        System.out.println(selectedItemWeights.stream().map( idx -> idx.toString() ).collect(Collectors.joining(" ")));
+        System.out.println(selectedItemWeights.stream().map(idx -> idx.toString()).collect(Collectors.joining(" ")));
         System.out.println();
     }
 
