@@ -8,23 +8,23 @@ import org.junit.runner.*;
 import org.junit.runners.*;
 
 @RunWith(Parameterized.class)
-public class BuildBinaryTree {
+public class BinaryTree {
 
     int[] preorder;
     int[] inorder;
 
     //Constructor used by JUnit to set test data.
-    public BuildBinaryTree(List<int []> input) {
-        this.preorder  = input.get(0);
-        this.inorder = input.get(1);
+    public BinaryTree(int [] preorder, int[] inorder) {
+        this.preorder  = preorder;
+        this.inorder = inorder;
     }
 
     //API to construct a Binary tree from pre-order and in-order array.
-    public TreeNode buildTree() {
-        return buildTree(this.preorder, this.inorder);
+    public TreeNode getRoot() {
+        return getRoot(this.preorder, this.inorder);
     }
 
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
+    public TreeNode getRoot(int[] preorder, int[] inorder) {
         List<Integer> pre = Arrays.stream(preorder).boxed().collect(Collectors.toList());
         List<Integer> ino = Arrays.stream(inorder).boxed().collect(Collectors.toList());
 
@@ -86,15 +86,15 @@ public class BuildBinaryTree {
     @Parameterized.Parameters
     public static Collection testData() {
         return Arrays.asList(new Object[][] {
-                { Arrays.asList(new int[] {3,9,20,15,7}, new int[] {9,3,15,20,7}) },
-                { Arrays.asList(new int[] {1,2,3}, new int[]{3, 2, 1}) }
+                { new int[] {3,9,20,15,7}, new int[] {9,3,15,20,7}},
+                { new int[] {1,2,3}, new int[]{3, 2, 1}}
         });
     }
 
     //Tests
     @Test
     public void testBinaryTree() {
-        TreeNode root  = buildTree(this.preorder, this.inorder);
+        TreeNode root  = getRoot(this.preorder, this.inorder);
         Assert.assertTrue(Arrays.stream(inorder).boxed().collect(Collectors.toList()).equals(inOrder(root)));
     }
 }
