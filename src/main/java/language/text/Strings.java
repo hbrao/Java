@@ -88,5 +88,10 @@ public class Strings {
                                                             )
                                                     );
         System.out.println(charFreq);
+
+        //Formatting
+        System.out.println(String.format("%02d", 9));
+
+
     }
 }

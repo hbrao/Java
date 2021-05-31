@@ -6,11 +6,11 @@ import java.util.stream.*;
 public class Permutations {
 
     public static void main(String[] args) {
-        permute(IntStream.range(1, 4).toArray()).forEach( permutation -> System.out.println(permutation));
+        permute(IntStream.range(1, 4).toArray()).forEach( permutation -> System.out.println(permutation) );
 
         System.out.println();
 
-        perumteIterative(IntStream.range(1, 4).toArray()).forEach( permutation -> System.out.println(permutation));
+        perumteIterative(IntStream.range(1, 4).toArray()).forEach( permutation -> System.out.println(permutation) );
     }
 
     //This API does not use any buffer / extra storage instead swaps elements of source.
@@ -53,6 +53,6 @@ public class Permutations {
             }
         }
 
-        return queue.stream().collect(Collectors.toList());
+        return new ArrayList<>(queue);
     }
 }

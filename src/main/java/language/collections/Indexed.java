@@ -1,46 +1,41 @@
 package language.collections;
 
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.*;
 
 public class Indexed {
     public static void main(String[] args) {
         //
-        // Arrays
+        // Array
         //
-
-        String str = "ABCD";
-        Character[] chStr = str.chars().mapToObj(val -> (char) val).toArray(Character[]::new);
-        System.out.println("Original string :" + Arrays.stream(chStr).map(ch -> String.valueOf(ch) ).collect(Collectors.joining()));
 
         int[] raw = new int[] {2, -1, 3, -2, 1, 9, 11, 23, 6, 2};
         Integer[] arr = Arrays.stream(raw).boxed().toArray(Integer[]::new);
 
-        Arrays.sort(arr, Comparator.comparing((Integer i) -> i.intValue()));
-        Collections.sort(Arrays.asList(arr), Comparator.comparing((Integer i) -> i.intValue()).reversed()); //No reverse API in Arrays
+        //Sum
+        System.out.println(Arrays.stream(raw).sum());
+        System.out.println(Arrays.stream(arr).mapToInt(e -> e).sum());
+
+        //Sort
+        Arrays.sort(raw); // Can't use comparator on primitive arrays.
+        Arrays.sort(arr, Comparator.reverseOrder());
         System.out.println(Arrays.toString(arr));
 
-        Collections.swap(Arrays.asList(arr), 0,1); //No swap api in Arrays
-        System.out.println(Arrays.toString(arr));
+        //Swap NOTE: No swap api in Arrays
+        Collections.swap(Arrays.asList(arr), 0,1);
+        System.out.println(Arrays.asList(arr));
 
         //Fill
         Arrays.fill(arr, 0);
         System.out.println(Arrays.toString(arr));
 
-        //Unmodifiable list (backed by an array)
+        //
+        // Immutable list
+        //
+
         List<Integer> immutableList = List.of(1, 2, 3);
         System.out.println(immutableList);
-
-        //Modifiable fixed size list (backed by a fixed length array).
-        List<String> statusCodes = Arrays.asList("OPEN","PROCESS", "CLOSED");
-        statusCodes.set(1, "INPROCESS");
-        System.out.println(statusCodes);
-
-        //Mutable list (Backed by re-sizable array)
-        List<String> statusList = new ArrayList<>(List.of("OPEN", "PROCESS", "CLOSED"));
-        statusList.set(1, "INPROCESS");
-        statusList.add("ERROR");
-        System.out.println(statusList);
 
         //
         // ArrayList | Vector
@@ -73,10 +68,11 @@ public class Indexed {
         Collections.reverse(data);
         //Shuffle
         Collections.shuffle(data);
-        //To Array
-        Integer[] arr2 = data.toArray(new Integer[0]);
-        System.out.println(Arrays.toString(arr2));
         System.out.println(data);
+
+        //Clone into array.
+        Integer[] arr2 = data.toArray(Integer[]::new);
+        System.out.println(Arrays.toString(arr2));
     }
 
     public static void swap(int[] arr, int left, int right) {

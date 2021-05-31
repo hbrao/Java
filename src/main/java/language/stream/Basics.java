@@ -81,6 +81,14 @@ public class Basics {
         hm5.entrySet().forEach( (Map.Entry<Integer,Set<String>> e) -> System.out.println(e.getKey() + " : " + e.getValue()) );
 
         //
+        //Joining
+        //
+
+        String str = "ABCD";
+        Character[] chStr = str.chars().mapToObj(val -> (char) val).toArray(Character[]::new);
+        System.out.println("Original string :" + Arrays.stream(chStr).map(ch -> String.valueOf(ch) ).collect(Collectors.joining()));
+
+        //
         // Statistics
         //
 

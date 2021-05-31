@@ -38,7 +38,7 @@ public class Combinations {
         for( Integer i = start; i < nums.length ; i ++ ) {
             //Collect subset
             buffer.add(nums[i]);
-            if ( buffer.size() == k || k == 0) collector.add(new ArrayList<>(buffer));
+            if ( buffer.size() == k || k == 0 ) collector.add(new ArrayList<>(buffer));
 
             //Recursive call to collect higher sized subsets.
             subsetHelper(nums,i + 1, collector, buffer,  k);
