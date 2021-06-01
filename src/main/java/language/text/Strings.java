@@ -90,7 +90,7 @@ public class Strings {
         System.out.println(charFreq);
 
         //Formatting
-        System.out.println(String.format("%02d", 9));
+        System.out.println(String.format("[%1$5s %2$5s %3$5s]", 1440, 9,  13231));
 
 
     }
