@@ -7,6 +7,8 @@ import org.junit.*;
 import org.junit.runner.*;
 import org.junit.runners.*;
 
+import static language.matrix.Utils.*;
+
 @RunWith(Parameterized.class)
 public class Knapsack {
 
@@ -45,11 +47,12 @@ public class Knapsack {
     }
 
     public Integer getMaxProfitDynamicProgramming(Integer[] itemWeights, Integer[] itemProfits, Integer capacity) {
-        int[][] dp = new int[itemWeights.length + 1][capacity + 1];
+        Integer[][] dp = new Integer[itemWeights.length + 1][capacity + 1];
+        fillMatrix(dp, 0);
 
-        for(Integer i = 1 ; i <= itemWeights.length ; i ++ ) {
+        for( Integer i = 1 ; i <= itemWeights.length ; i ++ ) {
             Integer currItemWeight = itemWeights[i - 1];
-            for(Integer c = 1; c <= capacity ; c ++ ) {
+            for( Integer c = 1; c <= capacity ; c ++ ) {
                 Integer prevProfit = dp[i - 1][c];
                 if ( c >= currItemWeight ) {
                     Integer newProfit = itemProfits[i - 1] + dp[i - 1][c - currItemWeight];
@@ -66,7 +69,7 @@ public class Knapsack {
         return dp[itemWeights.length][capacity];
     }
 
-    public static void printMaxProfitItemWeights(Integer[] itemWeights, Integer[] itemProfits, int[][] dp) {
+    public static void printMaxProfitItemWeights(Integer[] itemWeights, Integer[] itemProfits, Integer[][] dp) {
         Integer itemIdx = dp.length - 1;
         Integer capacityIdx = dp[0].length - 1;
         Integer totalProfit = dp[itemIdx][capacityIdx];
@@ -102,16 +105,5 @@ public class Knapsack {
         System.out.println("Total profit : " + maxProfitActual);
 
         Assert.assertEquals(String.format("Expected %s != Actual %s ", maxProfitActual , maxProfitExpected) , maxProfitActual , maxProfitExpected);
-    }
-
-    public static void printMatrix(int[][] matrix) {
-        System.out.println();
-        Arrays.stream(matrix)
-              .forEach( (int[] row ) -> {
-                  System.out.print("[");
-                  System.out.print(Arrays.stream(row).mapToObj(e -> e).map(e -> String.format("%02d", e)).collect(Collectors.joining(" ")));
-                  System.out.println("]");
-              });
-        System.out.println();
     }
 }

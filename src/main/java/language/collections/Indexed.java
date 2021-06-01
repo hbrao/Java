@@ -50,7 +50,7 @@ public class Indexed {
         //Get Sub list
         List<Integer> subList = data.subList(0, n / 2);
         //Sort
-        data.sort(Comparator.reverseOrder());
+        data.sort(Comparator.naturalOrder());
         //Add
         data.add(9);
         data.add( n / 2 , - 10);
