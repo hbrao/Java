@@ -37,18 +37,13 @@ class SetPartition {
             }
         }
 
-        Integer i = num.length, j = capacity;
-        Boolean result = dp[i][j];
-        while( ! result && i >= 0 ) {
-            if ( j > 0 )  {
-                j -= 1;
-            } else {
-                i -= 1;
-                j = num.length;
+        for(Integer c = totalSum / 2 ; c >= 0 ; c -- ) {
+            if (dp[dp.length  - 1][c]) {
+                return Math.abs(c - (totalSum - c));
             }
-            result = dp[i][j];
         }
-        if ( result ) return Math.abs(j - (totalSum - j)); else return -1;
+
+        return -1;
     }
 
     public static void main(String[] args) {
