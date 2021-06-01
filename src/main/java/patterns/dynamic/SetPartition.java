@@ -1,9 +1,6 @@
 package patterns.dynamic;
 
-import language.matrix.Utils;
-
 import java.util.*;
-
 import static language.matrix.Utils.*;
 
 class SetPartition {

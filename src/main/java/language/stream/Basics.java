@@ -45,11 +45,11 @@ public class Basics {
                                            );
         System.out.println("Distinct keys= "+hm1);
 
-        Map<Integer, Set<String>> hm4= Arrays.stream(data).boxed().collect(Collectors.groupingBy(
+        Map<Integer, List<String>> hm4= Arrays.stream(data).boxed().collect(Collectors.groupingBy(
                 (Integer i) -> i.intValue(), //Define key classifier
                 Collectors.mapping( // Define value mapping logic
                     (Integer i) -> String.valueOf(i), // Value mapper
-                    Collectors.toSet() //Values Collector
+                    Collectors.toList() //Values Collector
                 )
         ));
         System.out.println("Group repeated values into HashMap = " + hm4);
