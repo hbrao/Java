@@ -55,41 +55,58 @@ class TopologicalSort {
             }
         );
 
+        Deque<Integer> stk = new LinkedList<>();
+        List<String> color = IntStream.range(0, vertices).boxed().map( v -> "WHITE").collect(Collectors.toList());
         List<Integer> sources = inDegree.entrySet().stream().filter( e -> e.getValue() == 0).map(e -> e.getKey()).collect(Collectors.toList());
-        List<Boolean> visited = IntStream.range(0, vertices).boxed().map( v -> false).collect(Collectors.toList());
         sources.forEach( u -> {
-                dfs_helper(adjList, visited, u, sortedOrder);
+                dfs_helper(adjList, color, u, sortedOrder, stk);
             }
         );
+
+        if( vertices != sortedOrder.size() ) {
+            return new ArrayList<>();
+        }
 
         return sortedOrder;
     }
 
-    public static void dfs_helper(Map<Integer,List<Integer>> adjList, List<Boolean> visited, Integer u, List<Integer> collector) {
-        if ( ! visited.get(u) ) {
+    public static void dfs_helper(Map<Integer,List<Integer>> adjList, List<String> color, Integer u, List<Integer> collector, Deque<Integer> stk) {
+        if ( color.get(u).equals("WHITE") ) {
+            color.set(u, "GRAY");
+            stk.push(u);
             adjList.get(u).forEach(v -> {
-                    if( ! visited.get(v) ) {
-                        dfs_helper(adjList, visited, v, collector);
+                    if( color.get(v).equals("WHITE") ) {
+                        dfs_helper(adjList, color, v, collector, stk);
+                    } else if ( stk.contains(v) ) {
+                        System.out.print("Cycle :");
+                        Deque<Integer> tmp = new LinkedList<>();
+                        while( stk.peek() != v ) {
+                           tmp.push(stk.pop());
+                        }
+                        tmp.push(stk.pop());
+                        System.out.println(tmp.stream().map(i -> i.toString()).collect(Collectors.joining(" -> ")));
+                        while( ! tmp.isEmpty() ) {
+                            stk.push(tmp.pop());
+                        }
                     }
                 }
             );
-            visited.set(u, true);
+            stk.pop();
+            color.set(u, "BLACK");
             collector.add(0, u);
         }
     }
 
     public static void main(String[] args) {
-        List<Integer> result =
-                 TopologicalSort.dfs(4, new int[][]{ new int[]{3, 2}, new int[]{3, 0}, new int[]{2, 0}, new int[]{2, 1} });
+        List<Integer> result = TopologicalSort.bfs(4, new int[][]{ new int[]{3, 2}, new int[]{3, 0}, new int[]{2, 0}, new int[]{2, 1} });
         System.out.println(result);
 
         result = TopologicalSort.dfs(5, new int[][]{new int[]{4, 2}, new int[]{4, 3}, new int[]{2, 0}, new int[]{2, 1}, new int[]{3, 1}});
         System.out.println(result);
 
-        result = TopologicalSort.dfs(7, new int[][]{new int[]{6, 4}, new int[]{6, 2}, new int[]{5, 3}, new int[]{5, 4}, new int[]{3, 0}, new int[]{3, 1}, new int[]{3, 2}, new int[]{4, 1}});
+        result = TopologicalSort.dfs(6, new int[][]{new int[]{5, 2}, new int[]{2, 0}, new int[]{2, 1}, new int[]{0, 4}, new int[]{4, 2}, new int[]{4, 3},  new int[]{3, 1}});
         System.out.println(result);
-
-        result = TopologicalSort.dfs(7, new int[][]{new int[]{6, 4}, new int[]{6, 2}, new int[]{5, 3}, new int[]{3, 5}, new int[]{5, 4}, new int[]{3, 0}, new int[]{3, 1}, new int[]{3, 2}, new int[]{4, 1}});
+        result = TopologicalSort.dfs(7, new int[][]{new int[]{5, 2}, new int[]{2, 0}, new int[]{2, 1}, new int[]{1, 6}, new int[]{6, 2}, new int[] {0, 4}, new int[]{4, 2}, new int[]{4, 3},  new int[]{3, 1}});
         System.out.println(result);
     }
 }
