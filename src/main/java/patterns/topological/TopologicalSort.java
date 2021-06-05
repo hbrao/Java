@@ -77,7 +77,7 @@ class TopologicalSort {
             adjList.get(u).forEach(v -> {
                     if( color.get(v).equals("WHITE") ) {
                         dfs_helper(adjList, color, v, collector, stk);
-                    } else if ( stk.contains(v) ) {
+                    } else if ( stk.contains(v) ) { // Back edge
                         System.out.print("Cycle :");
                         Deque<Integer> tmp = new LinkedList<>();
                         while( stk.peek() != v ) {
