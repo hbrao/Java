@@ -34,7 +34,7 @@ class TopologicalSort {
                     }
                 }
             );
-            sortedOrder.add(u);
+            sortedOrder.add(0, u);
         }
 
         if( sortedOrder.size() != vertices ) {
@@ -93,20 +93,24 @@ class TopologicalSort {
             );
             stk.pop();
             color.set(u, "BLACK");
-            collector.add(0, u);
+            collector.add(u);
         }
     }
 
     public static void main(String[] args) {
-        List<Integer> result = TopologicalSort.bfs(4, new int[][]{ new int[]{3, 2}, new int[]{3, 0}, new int[]{2, 0}, new int[]{2, 1} });
-        System.out.println(result);
 
-        result = TopologicalSort.dfs(5, new int[][]{new int[]{4, 2}, new int[]{4, 3}, new int[]{2, 0}, new int[]{2, 1}, new int[]{3, 1}});
-        System.out.println(result);
+        int[][] graph =  new int[][]{ new int[]{0, 1}, new int[]{1, 2}, new int[]{0, 3},new int[]{0, 5}, new int[]{1, 2}, new int[]{2, 4}, new int[]{3, 2}, new int[]{3, 5}, new int[]{5, 4} };
+        List<Integer> result = TopologicalSort.bfs(6, graph);
 
-        result = TopologicalSort.dfs(6, new int[][]{new int[]{5, 2}, new int[]{2, 0}, new int[]{2, 1}, new int[]{0, 4}, new int[]{4, 2}, new int[]{4, 3},  new int[]{3, 1}});
-        System.out.println(result);
-        result = TopologicalSort.dfs(7, new int[][]{new int[]{5, 2}, new int[]{2, 0}, new int[]{2, 1}, new int[]{1, 6}, new int[]{6, 2}, new int[] {0, 4}, new int[]{4, 2}, new int[]{4, 3},  new int[]{3, 1}});
+        System.out.println("Using BFS -> " + result);
+        result = TopologicalSort.dfs(6, graph);
+        System.out.println("Using DFS -> " + result);
+
+        System.out.println("Graph w/ cycles :");
+
+        int[][] cycleGraph = Arrays.copyOf(graph, graph.length + 1);
+        cycleGraph[cycleGraph.length - 1] = new int[]{4, 3};
+        result = TopologicalSort.dfs(6, cycleGraph);
         System.out.println(result);
     }
 }
