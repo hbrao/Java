@@ -41,7 +41,7 @@ public class FindPattern {
     }
 
     public static List<Integer> findWordConcatenation(String str, String[] words) {
-        List<Integer> resultIndices = new ArrayList<Integer>();
+        List<Integer> resultIndices = new ArrayList<>();
         Map<String,Integer> wordFreq = Arrays.stream(words).collect(Collectors.toMap( w -> w, w -> 1, (v1, v2) -> v1 + v2));
         Integer wl = words[0].length(), windowStart = 0, matched = 0;
         for(Integer windowEnd = 0; windowEnd < str.length(); windowEnd += wl) {
