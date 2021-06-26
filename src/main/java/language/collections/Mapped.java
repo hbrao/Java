@@ -50,7 +50,7 @@ public class Mapped {
         servers.put("mongo","mongodb://mongodb2.example.com:27017" ); //Collision
 
         servers.forEach(( s_key, s_value ) -> {
-                conn.merge( s_key
+                String newValue = conn.merge( s_key
                       , s_value
                       , (old_value , new_value) -> { //Merge function
                           return new_value; // Override with new value NOTE: If we return null entry gets deleted.
