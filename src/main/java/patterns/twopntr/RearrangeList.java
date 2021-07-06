@@ -44,6 +44,12 @@ public class RearrangeList {
         head.next.next.next = new ListNode(8);
         head.next.next.next.next = new ListNode(10);
         head.next.next.next.next.next = new ListNode(12);
+        ListNode h = head;
+        while (h != null) {
+            System.out.print(h.value + " ");
+            h = h.next;
+        }
+
         RearrangeList.reorder(head);
         while (head != null) {
             System.out.print(head.value + " ");

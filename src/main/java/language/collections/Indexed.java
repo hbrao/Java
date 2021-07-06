@@ -31,11 +31,13 @@ public class Indexed {
         System.out.println(Arrays.toString(arr));
 
         //
-        // Immutable list
+        // Array to List
         //
 
         List<Integer> immutableList = List.of(1, 2, 3);
         System.out.println(immutableList);
+
+        List<Integer> mutableList = Arrays.asList(1, 3, 4, 5);
 
         //
         // ArrayList | Vector

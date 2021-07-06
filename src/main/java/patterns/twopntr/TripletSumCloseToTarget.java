@@ -10,7 +10,34 @@ public class TripletSumCloseToTarget {
         JUnitCore.main("practice.twopntr.TripletSumCloseToTarget");
     }
 
-    public int searchTriplet(int[] arr, int targetSum) {
+    public static List<List<Integer>> searchQuadruplets(Integer[] arr, Integer target) {
+        //TODO Test the code.
+        List<List<Integer>> quadruplets = new ArrayList<>();
+        Arrays.sort(arr);
+
+        for(Integer i = 0; i < arr.length - 3 ; i ++ )
+           for(Integer j = i + 1; j < arr.length - 2; j ++)
+              searchPairs(arr, target, i, j, quadruplets);
+
+        return quadruplets;
+    }
+
+    public static void searchPairs(Integer[] arr, Integer targetSum, Integer first, Integer second, List<List<Integer>> quadruplets) {
+        Integer left = second + 1;
+        Integer right = arr.length - 1;
+        while( left < right ) {
+            Integer sum = arr[first] + arr[second] + arr[left] + arr[right];
+            if( sum == targetSum ) {
+                quadruplets.add(Arrays.asList(arr[first], arr[second], arr[left], arr[right]));
+            } else if ( sum < targetSum) {
+                left += 1;
+            } else {
+                right -= 1;
+            }
+        }
+    }
+
+    public int searchTripletSumCloseToTarget(int[] arr, int targetSum) {
         Arrays.sort(arr);
         Integer low = Integer.MIN_VALUE, high = Integer.MAX_VALUE;
         for(Integer i =0; i < arr.length - 2; i ++) {
@@ -38,8 +65,8 @@ public class TripletSumCloseToTarget {
 
     @Test
     public  void testSearchTriplet() {
-        Assert.assertEquals(1, searchTriplet(new int[] { -2, 0, 1, 2 }, 2));
-        Assert.assertEquals(0, searchTriplet(new int[] { -3, -1, 1, 2 }, 1));
-        Assert.assertEquals(3, searchTriplet(new int[] { 1, 0, 1, 1 }, 100));
+        Assert.assertEquals(1, searchTripletSumCloseToTarget(new int[] { -2, 0, 1, 2 }, 2));
+        Assert.assertEquals(0, searchTripletSumCloseToTarget(new int[] { -3, -1, 1, 2 }, 1));
+        Assert.assertEquals(3, searchTripletSumCloseToTarget(new int[] { 1, 0, 1, 1 }, 100));
     }
 }
