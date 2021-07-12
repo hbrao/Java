@@ -1,4 +1,4 @@
-package patterns.topological;
+package patterns.graph;
 
 import java.util.*;
 import java.util.stream.*;

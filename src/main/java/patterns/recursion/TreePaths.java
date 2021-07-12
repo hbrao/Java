@@ -3,7 +3,7 @@ package patterns.recursion;
 import patterns.TreeNode;
 import java.util.*;
 
-class TreePaths {
+class   TreePaths {
 
     public static List<List<Integer>> collectAllPaths(TreeNode root) {
         List<List<Integer>> allPaths = new ArrayList<>();
@@ -73,7 +73,8 @@ class TreePaths {
         List<List<Integer>> result = TreePaths.collectAllPaths(root);
 
         System.out.println("Tree paths: " + result);
-        System.out.println("Path " + result.get(0) + " exists ? " + findPath(root, result.get(0).toArray(new Integer[]{})));
+        System.out.println("Path " + result.get(0) + " exists ? "
+                + findPath(root, result.get(0).toArray(new Integer[]{})));
         System.out.println("Tree paths total sum: " + findSumOfPathNumbers(root, 0));
     }
 }

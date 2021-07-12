@@ -46,7 +46,8 @@ public class Overlap {
         }
 
         //Merge all overlapping intervals into newInterval
-        //A close observation will tell us that whenever the two intervals overlap, one of the interval’s start time lies within the other interval.
+        //A close observation will tell us that whenever the two intervals overlap,
+        //one of the interval’s start time lies within the other interval.
         while ( i < intervals.size()
                 && ( newInterval.start >= intervals.get(i).start && newInterval.start <= intervals.get(i).end
                      || intervals.get(i).start >= newInterval.start && intervals.get(i).start <= newInterval.end

@@ -37,6 +37,7 @@ public class Mapped {
         String defaultValue = conn.getOrDefault("oracle", "jdbc:oracle:thin:@db.server:1521:orcl");
 
         //Remove
+        conn.remove("not_exists");
         conn.remove("mongo", "mongodb://mongodb0.example.com:27017"); // Only when both key , value matches
 
         System.out.println(conn);

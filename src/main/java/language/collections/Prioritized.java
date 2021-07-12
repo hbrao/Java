@@ -31,7 +31,7 @@ public class Prioritized {
         PriorityQueue<Integer> minCapitalHeap = new PriorityQueue<>(capital.length, (idx1, idx2) -> {
            return Integer.compare(capital[idx1], capital[idx2]);
         });
-        PriorityQueue<Integer> maxProfitHeap  = new PriorityQueue<>(capital.length, (idx1, idx2) -> {
+        PriorityQueue<Integer> maxProfitHeap  = new PriorityQueue<>(profit.length, (idx1, idx2) -> {
            return Integer.compare(profit[idx2], profit[idx1]);
         });
         IntStream.range(0, capital.length).forEach( idx -> minCapitalHeap.add(idx) );

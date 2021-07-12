@@ -13,6 +13,7 @@ public class InOrderSuccessor {
             return findLeftMostNode(p.right);
         } else {
             Deque<TreeNode> stk = new LinkedList<>();
+            //In-order traversal
             TreeNode n  = root;
             TreeNode prev = null;
             while ( ! stk.isEmpty() || n != null  ) {
