@@ -7,7 +7,7 @@ import org.junit.runner.*;
 public class TripletSumCloseToTarget {
 
     public static void main(String[] args) {
-        JUnitCore.main("practice.twopntr.TripletSumCloseToTarget");
+        JUnitCore.main("patterns.twopntr.TripletSumCloseToTarget");
     }
 
     public static List<List<Integer>> searchQuadruplets(Integer[] arr, Integer target) {

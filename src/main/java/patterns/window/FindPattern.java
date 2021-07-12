@@ -7,7 +7,7 @@ import org.junit.runner.*;
 
 public class FindPattern {
     public static void main(String[] args) {
-        JUnitCore.main("practice.window.FindPattern");
+        JUnitCore.main("patterns.window.FindPattern");
     }
 
     public Boolean hasPermutedPattern(String str, String pattern) {

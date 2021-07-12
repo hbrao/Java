@@ -77,7 +77,7 @@ public class Indexed {
         System.out.println(Arrays.toString(arr2));
     }
 
-    public static void swap(int[] arr, int left, int right) {
-        arr[left] = (arr[left] + arr[right]) - (arr[right] = arr[left]);
+    public static void swap(int[] arr, int i, int j) {
+        arr[i] = (arr[i] + arr[j]) - (arr[j] = arr[i]);
     }
 }
