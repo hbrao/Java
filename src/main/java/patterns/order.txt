@@ -6,5 +6,5 @@ recursion
 stack
 twoheap
 backtrack
-graph
 dynamic
+graph

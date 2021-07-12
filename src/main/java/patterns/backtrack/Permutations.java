@@ -37,7 +37,7 @@ public class Permutations {
 
     //Iterative implementation of permutations.
     public static List<List<Integer>> perumteIterative(int[] nums) {
-        Deque<List<Integer>> queue = new LinkedList<>();
+        Queue<List<Integer>> queue = new LinkedList<>();
         queue.add(new ArrayList<>());
         for(Integer num : nums) {
             Integer qsize = queue.size();
