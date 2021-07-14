@@ -17,10 +17,10 @@ public class KthSmallestInMSortedArrays {
 
     public static Integer findKthSmallest(List<Integer[]> lists, Integer k) {
         Queue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(n -> lists.get(n.arrayIndex)[n.elemIndex]));
-        IntStream.range(0, lists.size() - 1).forEach( idx -> {
+        IntStream.range(0, lists.size()).forEach( idx -> {
             minHeap.add(new Node(idx, 0));
         });
-        minHeap.add(new Node(lists.size() - 1, 0));
+
         Integer numElements = 0 , result = 0;
         while( ! minHeap.isEmpty() ) {
             Node n = minHeap.remove();
