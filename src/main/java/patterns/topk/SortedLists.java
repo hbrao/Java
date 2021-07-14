@@ -48,7 +48,7 @@ public class SortedLists {
             currentMax = Math.max(currentMax, lists.get(i)[0]);
         }
 
-        while( minHeap.size() == lists.size() ) {
+        while( minHeap.size() == lists.size() ) { // Exit when one of the list is exhausted
             Node n = minHeap.remove();
             if( currentMax - lists.get(n.arrayIndex)[n.elementIndex] < rangeEnd - rangeStart ) {
                 rangeStart = lists.get(n.arrayIndex)[n.elementIndex];
