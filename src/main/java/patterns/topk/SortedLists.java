@@ -20,7 +20,7 @@ public class SortedLists {
     }
 
     public static Integer findKthSmallest(List<Integer[]> lists, Integer k) {
-        Queue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(n -> lists.get(n.arrayIndex)[n.elemIndex]));
+        Queue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(n -> lists.get(n.arrayIndex)[n.elementIndex]));
         IntStream.range(0, lists.size()).forEach( idx -> {
             minHeap.add(new Node(idx, 0));
         });
@@ -28,12 +28,12 @@ public class SortedLists {
         Integer numElements = 0 , result = 0;
         while( ! minHeap.isEmpty() ) {
             Node n = minHeap.remove();
-            result = lists.get(n.arrayIndex)[n.elemIndex];
+            result = lists.get(n.arrayIndex)[n.elementIndex];
             numElements += 1;
             if (numElements == k) break;
 
-            n.elemIndex += 1;
-            if( lists.get(n.arrayIndex).length > n.elemIndex ) {
+            n.elementIndex += 1;
+            if( lists.get(n.arrayIndex).length > n.elementIndex) {
                 minHeap.add(n);
             }
         }
@@ -41,7 +41,7 @@ public class SortedLists {
     }
 
     public static Integer[] findSmallestRange(List<Integer[]> lists) {
-        Queue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(n -> lists.get(n.arrayIndex)[n.elemIndex]));
+        Queue<Node> minHeap = new PriorityQueue<>(Comparator.comparingInt(n -> lists.get(n.arrayIndex)[n.elementIndex]));
         Integer rangeStart = 0 , rangeEnd = Integer.MAX_VALUE, currentMax = Integer.MIN_VALUE;
         for(Integer i = 0 ; i < lists.size() ; i ++ ) {
             minHeap.add(new Node(i, 0));
@@ -50,15 +50,15 @@ public class SortedLists {
 
         while( minHeap.size() == lists.size() ) {
             Node n = minHeap.remove();
-            if( currentMax - lists.get(n.arrayIndex)[n.elemIndex] < rangeEnd - rangeStart ) {
-                rangeStart = lists.get(n.arrayIndex)[n.elemIndex];
+            if( currentMax - lists.get(n.arrayIndex)[n.elementIndex] < rangeEnd - rangeStart ) {
+                rangeStart = lists.get(n.arrayIndex)[n.elementIndex];
                 rangeEnd = currentMax;
             }
 
-            n.elemIndex += 1;
-            if( n.elemIndex < lists.get(n.arrayIndex).length ) {
+            n.elementIndex += 1;
+            if( n.elementIndex < lists.get(n.arrayIndex).length ) {
                 minHeap.add(n);
-                currentMax = Math.max(currentMax, lists.get(n.arrayIndex)[n.elemIndex]);
+                currentMax = Math.max(currentMax, lists.get(n.arrayIndex)[n.elementIndex]);
             }
         }
 
@@ -67,10 +67,10 @@ public class SortedLists {
 
     public static class Node {
         Integer arrayIndex;
-        Integer elemIndex;
+        Integer elementIndex;
         public  Node(Integer aIdx, Integer eIdx) {
             this.arrayIndex  = aIdx;
-            this.elemIndex = eIdx;
+            this.elementIndex = eIdx;
         }
     }
 }
